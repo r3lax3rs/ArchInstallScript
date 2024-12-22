@@ -16,7 +16,8 @@ mygpu="lspci -v |grep VGA | awk {'print $5'}"
 #
 #Disable systemd sleep services
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
-#
+#Change to dark mode
+lookandfeeltool -a org.kde.breezedark.desktop
 #First lets do a first time update of our system
 pacman -Syu --noconfirm
 #Installing right headers for linux/linux-zen
