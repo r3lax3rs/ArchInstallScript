@@ -1,4 +1,4 @@
-#My own installation script to make life a bit easier
+<br />#My own installation script to make life a bit easier
 #Some steps need to be done manually before using these
 #When installing arch fresh even before using the default "archinstall" command to trigger the install script:
 pacman-key --init
