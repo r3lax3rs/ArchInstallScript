@@ -17,8 +17,11 @@ mygpu="lspci -v |grep VGA | awk {'print $5'}"
 #make something that checks this and exits when script is not executed as root
 #Disable systemd sleep services
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+#Symlink root KDE to User KDE (else we don't see the theme switching, only after logging out/rebooting)
+#ln -s /home/$USER/.kde /root/.kde ->>> mabye also not the way to go
 #Change to dark mode
-lookandfeeltool -a org.kde.breezedark.desktop
+plasma-apply-colorscheme BreezeDark
+#lookandfeeltool -a org.kde.breezedark.desktop --> idk if this is the right way
 #First lets do a first time update of our system
 pacman -Syu --noconfirm
 #Installing right headers for linux/linux-zen
