@@ -6,7 +6,7 @@
 sed -i 's/#Color/Color/' /etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 20/' /etc/pacman.conf
 #Issues with installing Audio via default archinstall script; fix
-pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa --noconfirm
+pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa base-devel --needed --noconfirm
 systemctl --user enable --now pipewire.service wireplumber.service pipewire-pulse.service
 #
 #Installing through the JSON user configuration from the archinstall script
