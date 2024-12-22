@@ -8,3 +8,13 @@
 -   cd ScriptTesting
 -   chmod +x PreInstall.sh
 -   ./PreInstall.sh
+
+-  #Then use the default archinstall script by typing in:
+-  archinstall
+
+-  #When done with that, reboot and login to your account.
+-  #Open the Konsole (ALT + T)
+-  #This script is meant for Intel+NVidia users to install video card drivers + configure all settings + make nvidia hook for when there are updates.
+-  cd ScriptTesting
+-  chmod +x ArchInstall.sh
+-  ./ArchInstall.sh
