@@ -13,7 +13,8 @@ kernel="uname -r | awk {'print substr($0, length($0)-2, 3)'}" #zen or lts
 linuxkernal="uname -r | awk {'print substr($0, length($0)-6, 4)'}" #arch
 cpu="cat /proc/cpuinfo |grep vendor_id | awk '!seen[$0]++' | awk {'print $3'}"
 mygpu="lspci -v |grep VGA | awk {'print $5'}"
-#
+#This script needs to be run as root
+#make something that checks this and exits when script is not executed as root
 #Disable systemd sleep services
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 #Change to dark mode
