@@ -68,9 +68,6 @@ else
     sleep 3
 fi
 wait
-#Installing the right things to make arch work good
-#pacman -S --needed --noconfirm
-
 #Installing the right video card drivers
 if [[ "$kernel" == "zen" && "$mygpu" == "NVIDIA" ]]; then
     echo "linux-zen & Nvidia detected; will install nvidia-dkms"
