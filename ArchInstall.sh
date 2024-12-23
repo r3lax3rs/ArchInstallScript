@@ -32,6 +32,7 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 plasma-apply-colorscheme BreezeDark 2> /dev/null
 #Misschien een idee om root+user mee te pakken
 #plasma-apply-colorscheme BreezeDark 2> /dev/null && sudo -u $USER plasma-apply-colorscheme BreezeDark 2> /dev/null
+#Of misschien -> sudo --user=$USER plasma-apply-colorscheme BreezeDark 2> /dev/null
 #lookandfeeltool -a org.kde.breezedark.desktop --> idk if this is the right way
 #First lets do a first time update of our system
 pacman -Syu --noconfirm
