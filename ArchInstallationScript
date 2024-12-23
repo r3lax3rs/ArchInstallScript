@@ -1,1 +1,56 @@
+#!/bin/bash
+#This is in a very early stage and i have 0 clue what im doing here yet:
+#This is written because of freespace error joke from arch
+#Manually make everything that archinstall script does
+#
+#Create partitions
+#/dev/sda1 EFI
+#/dev/sda2 1GB swap
+#/dev/sda3 15GB root
+#/dev/sda4 35GB home
+mkfs.fat /dev/sda1
+mkswap /dev/sda2
+mkfs.ext4 /dev/sda3
+mkfs.ext4 /dev/sda4
+#Mount partitions
+mount /dev/sda3 /mnt
+mkdir /mnt/home
+mkdir /mnt/boot
+mount /dev/sda4 /mnt/home
+mount /dev/sda1 /mnt/boot
+swapon /dev/sda2
+#Sync pacman mirrors
+pacman -Syy
+pacman -S reflector
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+reflector -c "IT" -f 12 -1 10 -n 12 --save /etc/pacman.d/mirrorlist
+#Install system and base tools
+pacstrap /mnt base base-devel linux linux-firmware amd-ucode
+#Create fstab file
+genfstab -U /mnt >> /mnt/etc/fstab
+#Chroot Time
+arch-chroot /mnt
+#add some usefull software
+pacman -S vim networkmanager git ufw
+#Local Time
+timedatectl set-timezone Europe/Amsterdam
+timedatectl set-ntp true
+#Edit /etc/locale.gen
+sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen
+#Hostname and hosts
+echo ArchScriptV2 > /etc/hostname
+touch /etc/hosts
+echo "127.0.0.1 localhost" > /etc/hosts
+echo "127.0.1.1 ArchScriptV2" > /etc/hosts
+#set password for root
+passwd
+#Enable Services
+systemctl enable NetworkManager
+#Add user
+useradd -mG wheel kasper
+passwd kasper
 
+EDITOR=nano visudo
+##### Does not work fully #####
+# https://gist.github.com/rickie95/4cdf5c800fa97594e72c7c7e69abc92b
