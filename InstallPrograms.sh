@@ -31,6 +31,8 @@ sudo pacman -S teamspeak3 --needed --noconfirm
 sudo pacman -S telegram-desktop --needed --noconfirm
 #Install Geany (notepad)
 sudo pacman -S geany --needed --noconfirm
+#Install curl
+sudo pacman -S curl --needed --noconfirm
 #Install OpenTabletDriver
 # Downloads the pkgbuild from the AUR.
 git clone https://aur.archlinux.org/opentabletdriver.git
@@ -48,6 +50,14 @@ wait
 # Unload kernel modules
 sudo rmmod wacom hid_uclogic
 wait
+#Install 1password
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+wait
+git clone https://aur.archlinux.org/1password.git
+wait
+cd 1password
+wait
+makepkg -si
 #This part is to install Qem/KVM & VirtManager TODO
 #End of script
 echo "Everything has been installed"
