@@ -30,6 +30,8 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 #ln -s /home/$USER/.kde /root/.kde ->>> mabye also not the way to go
 #Change to dark mode
 plasma-apply-colorscheme BreezeDark 2> /dev/null
+#Misschien een idee om root+user mee te pakken
+#plasma-apply-colorscheme BreezeDark 2> /dev/null && sudo -u $USER plasma-apply-colorscheme BreezeDark 2> /dev/null
 #lookandfeeltool -a org.kde.breezedark.desktop --> idk if this is the right way
 #First lets do a first time update of our system
 pacman -Syu --noconfirm
@@ -80,7 +82,7 @@ elif [[ "$linuxkernel" == "arch" ]] && "$mygpu" == "NVIDIA" ]]; then
     pacman -S nvidia --needed --noconfirm
 fi
 #Adding Nvidia hook for updates
-cp ~/ScriptTesting/nvidia.hook /etc/pacman.d/hooks/
+cp ~/home/$USER/ScriptTesting/nvidia.hook /etc/pacman.d/hooks/
 if [[ "$kernel" == "zen" && "$mygpu" == "NVIDIA" ]]; then
     echo "Script is already configured for linux-zen & nvidia-dkms"
 elif [[ "$kernel" == "lts" ]] && "$mygpu" == "NVIDIA" ]]; then
