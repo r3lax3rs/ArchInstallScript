@@ -86,8 +86,16 @@ elif [ ! -d "/etc/pacman.d/hooks/" ]; then
     mkdir "/etc/pacman.d/hooks"
     echo "directory hooks has been added; will copy nvidia.hook next"
 fi
+#Check if /etc/pacman.d/hooks/ directory exists
+if [ -d "/etc/pacman.d/hooks/" ]; then
+    echo "Directory already exists, will continue to copy nvidia.hook"
+elif [ ! -d "/etc/pacman.d/hooks/" ]; then
+    mkdir "/etc/pacman.d/hooks/"
+    echo "Directory hooks has been added; wil copy nvidia.hook next"
+fi
 #Adding Nvidia hook for updates
-cp ~/home/$USER/ScriptTesting/nvidia.hook /etc/pacman.d/hooks/
+cp /home/$USER/ScriptTesting/nvidia.hook /etc/pacman.d/hooks/
+#Check what settings needs to be overwritten based on kernel + gpu
 if [[ "$kernel" == "zen" && "$mygpu" == "NVIDIA" ]]; then
     echo "Script is already configured for linux-zen & nvidia-dkms"
 elif [[ "$kernel" == "lts" ]] && "$mygpu" == "NVIDIA" ]]; then
