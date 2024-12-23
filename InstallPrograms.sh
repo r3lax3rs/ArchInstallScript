@@ -14,7 +14,7 @@ wait
 git clone https://aur.archlinux.org/yay.git
 wait
 cd yay
-makepkg -si
+makepkg -si --noconfirm
 wait
 #Now let's update yay; NEVER RUN 'yay -Syu' as SUDO or ROOT!!!
 yay -Syu --noconfirm
@@ -45,7 +45,7 @@ sudo pacman -S curl --needed --noconfirm
 git clone https://aur.archlinux.org/opentabletdriver.git
 wait
 # Changes into the correct directory, pulls needed dependencies, then installs OpenTabletDriver
-cd opentabletdriver && makepkg -si
+cd opentabletdriver && makepkg -si --noconfirm
 wait
 # Clean up leftovers
 cd ..
@@ -64,7 +64,7 @@ git clone https://aur.archlinux.org/1password.git
 wait
 cd 1password
 wait
-makepkg -si
+makepkg -si --noconfirm
 #This part is to install Qem/KVM & VirtManager TODO
 #End of script
 echo "Everything has been installed"
