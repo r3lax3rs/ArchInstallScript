@@ -1,5 +1,12 @@
 #!/bin/bash
 #
+# Make sure this script is run as root
+if [[ $EUID -ne 0 ]]; then
+    echo
+    echo "This script must be run as root" 1>&2
+    echo
+    exit
+fi
 #Remove file at the end of script; uncomment to make it work
 #rm -- "$0"
 #list of variables
