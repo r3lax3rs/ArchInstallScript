@@ -29,10 +29,7 @@ systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 
 #Symlink root KDE to User KDE (else we don't see the theme switching, only after logging out/rebooting)
 #ln -s /home/$USER/.kde /root/.kde ->>> mabye also not the way to go
 #Change to dark mode
-plasma-apply-colorscheme BreezeDark 2> /dev/null
-#Misschien een idee om root+user mee te pakken
-#plasma-apply-colorscheme BreezeDark 2> /dev/null && sudo -u $USER plasma-apply-colorscheme BreezeDark 2> /dev/null
-#Of misschien -> sudo --user=$USER plasma-apply-colorscheme BreezeDark 2> /dev/null
+plasma-apply-colorscheme BreezeDark 2> /dev/null && sudo --user=$USER plasma-apply-colorscheme BreezeDark 2> /dev/null
 #lookandfeeltool -a org.kde.breezedark.desktop --> idk if this is the right way
 #First lets do a first time update of our system
 pacman -Syu --noconfirm
