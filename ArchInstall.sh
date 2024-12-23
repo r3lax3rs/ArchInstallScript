@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+#Remove file at the end of script; uncomment to make it work
+#rm -- "$0"
 #list of variables
 #Color variables for error ouput
 flashred="\033[5;31;40m"
