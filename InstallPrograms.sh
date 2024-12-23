@@ -1,6 +1,6 @@
 #!/bin/bash
 # Make sure this script is run as root
-if [[ $EUID -e 0 ]]; then
+if [[ $EUID -eq 0 ]]; then
     echo
     echo "Don't run this script as root. It can mess up your system" 1>&2
     echo
