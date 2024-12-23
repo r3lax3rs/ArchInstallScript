@@ -119,4 +119,4 @@ sleep 2
 grub-mkconfig -o /boot/grub/grub.cfg && mkinitcpio -P
 echo "All settings have been written to the configs. Will reboot in 10sec"
 sleep 10
-#reboot now
+#Advice to reboot (make script which gives user te option to reboot or not)
