@@ -1,5 +1,12 @@
 #!/bin/bash
-#IDK if im going to make this run as root, we will see
+# Make sure this script is run as root
+if [[ $EUID -e 0 ]]; then
+    echo
+    echo "Don't run this script as root. It can mess up your system" 1>&2
+    echo
+    exit
+fi
+wait
 #First lets make sure our system is updated
 sudo pacman -Syu --noconfirm
 wait
