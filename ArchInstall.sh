@@ -79,6 +79,13 @@ elif [[ "$linuxkernel" == "arch" ]] && "$mygpu" == "NVIDIA" ]]; then
     sleep 2
     pacman -S nvidia --needed --noconfirm
 fi
+#Look if /etc/pacman.d/hooks/ directory exists; if not adding hooks map
+if [ -d "/etc/pacman.d/hooks/" ]; then
+    echo "Directory already exists, will continue to copy nvidia.hook"
+elif [ ! -d "/etc/pacman.d/hooks/" ]; then
+    mkdir "/etc/pacman.d/hooks"
+    echo "directory hooks has been added; will copy nvidia.hook next"
+fi
 #Adding Nvidia hook for updates
 cp ~/home/$USER/ScriptTesting/nvidia.hook /etc/pacman.d/hooks/
 if [[ "$kernel" == "zen" && "$mygpu" == "NVIDIA" ]]; then
