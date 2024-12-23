@@ -7,6 +7,7 @@ if [[ $EUID -ne 0 ]]; then
     echo
     exit
 fi
+wait
 #Remove file at the end of script; uncomment to make it work
 #rm -- "$0"
 #list of variables
@@ -16,7 +17,6 @@ fi
 #none="\033[0m"
 intel="GenuineIntel"
 AMDCPU="AuthenticAMD"
-#
 #Variables for comparisons
 export architecture=`uname -m`
 export kernel=`uname -r | awk {'print substr($0, length($0)-2, 3)'}` #zen or lts
@@ -27,13 +27,16 @@ export mygpu=`lspci -v |grep VGA | awk {'print $5'}`
 #make something that checks this and exits when script is not executed as root
 #Disable systemd sleep services
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 2> /dev/null
+wait
 #Symlink root KDE to User KDE (else we don't see the theme switching, only after logging out/rebooting)
 #ln -s /home/$USER/.kde /root/.kde ->>> mabye also not the way to go
 #Change to dark mode
 plasma-apply-colorscheme BreezeDark 2> /dev/null && sudo --user=$USER plasma-apply-colorscheme BreezeDark 2> /dev/null
+wait
 #lookandfeeltool -a org.kde.breezedark.desktop --> idk if this is the right way
 #First lets do a first time update of our system
 pacman -Syu --noconfirm
+wait
 #Installing right headers for linux/linux-zen
 if [[ "$kernel" == "zen" ]]; then
     echo "linux-zen kernal detected"
@@ -49,11 +52,10 @@ elif [[ "$linuxkernal" == "arch" ]]; then
     pacman -S linux-headers linux-firmware --needed --noconfirm
 else
     echo "You don't have linux, linux-lts or linux-zen kernel installed on your system!"
-    echo "No kernal headers will be installed! Script will continue in 10s"
-    sleep 10
+    echo "No kernal headers will be installed! Script will continue in 5s"
+    sleep 5
 fi
-#
-#
+wait
 #Installing intel-ucode for intel machines
 if [[ "$cpu" == "$intel" ]]; then
     pacman -S intel-ucode --needed --noconfirm
@@ -65,7 +67,7 @@ else
     echo "Skipping to next step in 3s"
     sleep 3
 fi
-#
+wait
 #Installing the right things to make arch work good
 #pacman -S --needed --noconfirm
 
@@ -83,6 +85,7 @@ elif [[ "$linuxkernel" == "arch" ]] && "$mygpu" == "NVIDIA" ]]; then
     sleep 2
     pacman -S nvidia --needed --noconfirm
 fi
+wait
 #Cehck if /etc/pacman.d/hooks/ directory exists; if not adding hooks map
 if [ -d "/etc/pacman.d/hooks/" ]; then
     echo "Directory already exists, will continue to copy nvidia.hook"
@@ -90,8 +93,10 @@ elif [ ! -d "/etc/pacman.d/hooks/" ]; then
     mkdir "/etc/pacman.d/hooks"
     echo "directory hooks has been added; will copy nvidia.hook next"
 fi
+wait
 #Adding Nvidia hook for updates
 cp /home/$USER/ScriptTesting/nvidia.hook /etc/pacman.d/hooks/
+wait
 #Check what settings needs to be overwritten based on kernel + gpu
 if [[ "$kernel" == "zen" && "$mygpu" == "NVIDIA" ]]; then
     echo "Script is already configured for linux-zen & nvidia-dkms"
@@ -106,17 +111,21 @@ elif [[ "$linuxkernel" == "arch" ]] && "$mygpu" == "NVIDIA" ]]; then
     echo "Config has been rewritten for linux default kernal and default nvidia drivers"
     sleep 2
 fi
+wait
 #Editing GRUB config for Intel+Nvidia
 if [[ "$cpu" == "$intel" ]] && [[ "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/GRUB_CMDLINE_LINUX_DEFUALT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=3 udev.log=priority=3 nvidia_drm.modeset=1 nvidia-drm.fbdev=1 ibt=off"/' /etc/default/grub
     echo "lines have been added to /etc/default/grub"
 fi
+wait
 #Adding user to video group
 echo "Adding current user: $USER to video group"
 usermod -aG video $USER
-sleep 2
+wait
 #Write settings to GRUB & mkinitcpio at the end of everything
 grub-mkconfig -o /boot/grub/grub.cfg && mkinitcpio -P
-echo "All settings have been written to the configs. Will reboot in 10sec"
+echo "All settings have been written to the configs."
+echo "Please reboot your system"
 sleep 10
+wait
 #Advice to reboot (make script which gives user te option to reboot or not)
