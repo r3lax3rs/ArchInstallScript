@@ -14,7 +14,8 @@ fi
 #flashred="\033[5;31;40m"
 #red="\033[31;40m"
 #none="\033[0m"
-export intel="GenuineIntel"
+intel="GenuineIntel"
+AMDCPU="AuthenticAMD"
 #
 #Variables for comparisons
 export architecture=`uname -m`
@@ -56,10 +57,13 @@ fi
 #Installing intel-ucode for intel machines
 if [[ "$cpu" == "$intel" ]]; then
     pacman -S intel-ucode --needed --noconfirm
+elif [[ "$cpu" == "$AMDCPU" ]]; then
+    pacman -S amd-ucode --needed --noconfirm
 else
-    echo "$flashredError: You don't have an Intel CPU!"
-    echo "$redSkipping to next step in 10s"
-    sleep 10
+    echo "Error: You don't have an Intel or AMD CPU!"
+    echo "No ucode will be installed"
+    echo "Skipping to next step in 3s"
+    sleep 3
 fi
 #
 #Installing the right things to make arch work good
@@ -79,19 +83,12 @@ elif [[ "$linuxkernel" == "arch" ]] && "$mygpu" == "NVIDIA" ]]; then
     sleep 2
     pacman -S nvidia --needed --noconfirm
 fi
-#Look if /etc/pacman.d/hooks/ directory exists; if not adding hooks map
+#Cehck if /etc/pacman.d/hooks/ directory exists; if not adding hooks map
 if [ -d "/etc/pacman.d/hooks/" ]; then
     echo "Directory already exists, will continue to copy nvidia.hook"
 elif [ ! -d "/etc/pacman.d/hooks/" ]; then
     mkdir "/etc/pacman.d/hooks"
     echo "directory hooks has been added; will copy nvidia.hook next"
-fi
-#Check if /etc/pacman.d/hooks/ directory exists
-if [ -d "/etc/pacman.d/hooks/" ]; then
-    echo "Directory already exists, will continue to copy nvidia.hook"
-elif [ ! -d "/etc/pacman.d/hooks/" ]; then
-    mkdir "/etc/pacman.d/hooks/"
-    echo "Directory hooks has been added; wil copy nvidia.hook next"
 fi
 #Adding Nvidia hook for updates
 cp /home/$USER/ScriptTesting/nvidia.hook /etc/pacman.d/hooks/
