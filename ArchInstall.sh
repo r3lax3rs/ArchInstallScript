@@ -4,25 +4,25 @@
 #rm -- "$0"
 #list of variables
 #Color variables for error ouput
-flashred="\033[5;31;40m"
-red="\033[31;40m"
-none="\033[0m"
-intel="GenuineIntel"
+#flashred="\033[5;31;40m"
+#red="\033[31;40m"
+#none="\033[0m"
+export intel="GenuineIntel"
 #
 #Variables for comparisons
-architecture="uname -m"
-kernel="uname -r | awk {'print substr($0, length($0)-2, 3)'}" #zen or lts
-linuxkernal="uname -r | awk {'print substr($0, length($0)-6, 4)'}" #arch
-cpu="cat /proc/cpuinfo |grep vendor_id | awk '!seen[$0]++' | awk {'print $3'}"
-mygpu="lspci -v |grep VGA | awk {'print $5'}"
+export architecture=`uname -m`
+export kernel=`uname -r | awk {'print substr($0, length($0)-2, 3)'}` #zen or lts
+export linuxkernal=`uname -r | awk {'print substr($0, length($0)-6, 4)'}` #arch
+export cpu=`cat /proc/cpuinfo |grep vendor_id | awk '!seen[$0]++' | awk {'print $3'}`
+export mygpu=`lspci -v |grep VGA | awk {'print $5'}`
 #This script needs to be run as root
 #make something that checks this and exits when script is not executed as root
 #Disable systemd sleep services
-systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 2> /dev/null
 #Symlink root KDE to User KDE (else we don't see the theme switching, only after logging out/rebooting)
 #ln -s /home/$USER/.kde /root/.kde ->>> mabye also not the way to go
 #Change to dark mode
-plasma-apply-colorscheme BreezeDark
+plasma-apply-colorscheme BreezeDark 2> /dev/null
 #lookandfeeltool -a org.kde.breezedark.desktop --> idk if this is the right way
 #First lets do a first time update of our system
 pacman -Syu --noconfirm
@@ -40,8 +40,8 @@ elif [[ "$linuxkernal" == "arch" ]]; then
     sleep 2
     pacman -S linux-headers linux-firmware --needed --noconfirm
 else
-    echo "$flashredYou don't have linux, linux-lts or linux-zen kernel installed on your system!"
-    echo "$flashredNo kernal headers will be installed! Script will continue in 10s"
+    echo "You don't have linux, linux-lts or linux-zen kernel installed on your system!"
+    echo "No kernal headers will be installed! Script will continue in 10s"
     sleep 10
 fi
 #
