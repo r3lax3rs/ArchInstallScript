@@ -73,3 +73,7 @@ echo "Everything has been installed"
 sleep 2
 echo "Exiting script"
 sleep 2
+#
+#
+#Create something so makepkg already has its dependancies so it wont invoke PW
+printf "%s\n" "$PWonce" | sudo -S pacman -S go --noconfirm --needed
