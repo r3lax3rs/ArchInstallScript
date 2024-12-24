@@ -35,7 +35,7 @@ plasma-apply-colorscheme BreezeDark 2> /dev/null && sudo --user=$USER plasma-app
 wait
 #lookandfeeltool -a org.kde.breezedark.desktop --> idk if this is the right way
 #First lets do a first time update of our system
-pacman -Syu --noconfirm
+pacman -Syu --noconfirm 2> /dev/null
 wait
 #Installing right headers for linux/linux-zen
 if [[ "$kernel" == "zen" ]]; then
@@ -120,7 +120,7 @@ echo "Adding current user: $USER to video group"
 usermod -aG video $USER
 wait
 #Write settings to GRUB & mkinitcpio at the end of everything
-grub-mkconfig -o /boot/grub/grub.cfg && mkinitcpio -P
+grub-mkconfig -o /boot/grub/grub.cfg && mkinitcpio -P 2> /dev/null
 echo "All settings have been written to the configs."
 echo "Please reboot your system"
 sleep 10
