@@ -10,7 +10,7 @@ wait
 #Should make it so that we have to fill in our PW only once
 read -p "Password: " -s PWonce
 #First lets make sure our system is updated
-printf "%\n" "$PWonce" | sudo pacman -Syu --noconfirm
+printf "%s\n" "$PWonce" | sudo pacman -Syu --noconfirm
 wait
 #Let's first install yay; a packet manager
 git clone https://aur.archlinux.org/yay.git
@@ -25,9 +25,9 @@ wait
 #Install Brave Browser
 yay -S brave-bin --needed --noconfirm
 #Install Steam
-printf "%\n" "$PWonce" | sudo pacman -S steam --needed --noconfirm
+printf "%s\n" "$PWonce" | sudo pacman -S steam --needed --noconfirm
 #Install Discord
-printf "%\n" "$PWonce" | sudo pacman -S discord --needed --noconfirm
+printf "%s\n" "$PWonce" | sudo pacman -S discord --needed --noconfirm
 #Install Spotify
 yay -S spotify --needed --noconfirm
 #Install Google Chrome
@@ -35,13 +35,13 @@ yay -S google-chrome --needed --noconfirm
 #Install NordVPN
 yay -S nordvpn-bin --needed --noconfirm
 #Install Teamspeak3
-printf "%\n" "$PWonce" | sudo pacman -S teamspeak3 --needed --noconfirm
+printf "%s\n" "$PWonce" | sudo pacman -S teamspeak3 --needed --noconfirm
 #Install Telegram Desktop App
-printf "%\n" "$PWonce" | sudo pacman -S telegram-desktop --needed --noconfirm
+printf "%s\n" "$PWonce" | sudo pacman -S telegram-desktop --needed --noconfirm
 #Install Geany (notepad)
-printf "%\n" "$PWonce" | sudo pacman -S geany --needed --noconfirm
+printf "%s\n" "$PWonce" | sudo pacman -S geany --needed --noconfirm
 #Install curl
-printf "%\n" "$PWonce" | sudo pacman -S curl --needed --noconfirm
+printf "%s\n" "$PWonce" | sudo pacman -S curl --needed --noconfirm
 #Install OpenTabletDriver
 # Downloads the pkgbuild from the AUR.
 git clone https://aur.archlinux.org/opentabletdriver.git
@@ -54,10 +54,10 @@ cd ..
 rm -rf opentabletdriver
 wait
 # Regenerate initramfs
-printf "%\n" "$PWonce" | sudo mkinitcpio -P
+printf "%s\n" "$PWonce" | sudo mkinitcpio -P
 wait
 # Unload kernel modules
-printf "%\n" "$PWonce" | sudo rmmod wacom hid_uclogic
+printf "%s\n" "$PWonce" | sudo rmmod wacom hid_uclogic
 wait
 #Install 1password
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
