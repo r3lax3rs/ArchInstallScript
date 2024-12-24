@@ -12,6 +12,9 @@ read -p "Password: " -s PWonce
 #First lets make sure our system is updated
 printf "%s\n" "$PWonce" | sudo -S pacman -Syu --noconfirm
 wait
+#Before we are gong to install yay, lets download dependencies
+#This way makepkg wont invoke pw for dependencies
+printf "%s\n" "$PWonce" | sudo -S pacman -S go --noconfirm --needed
 #Let's first install yay; a packet manager
 git clone https://aur.archlinux.org/yay.git
 wait
@@ -75,5 +78,3 @@ echo "Exiting script"
 sleep 2
 #
 #
-#Create something so makepkg already has its dependancies so it wont invoke PW
-printf "%s\n" "$PWonce" | sudo -S pacman -S go --noconfirm --needed
