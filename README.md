@@ -16,5 +16,5 @@
 -  #Open the Konsole (ALT + T)
 -  #This script is meant for Intel+NVidia users to install video card drivers + configure all settings + make nvidia hook for when there are updates.
 -  cd ScriptTesting
--  chmod +x ArchInstall.sh
--  ./ArchInstall.sh
+-  chmod +x BasicInstall.sh
+-  ./BasicInstall.sh
