@@ -5,6 +5,7 @@
 #Editing certain lines in /etc/pacman.conf for personal use
 sed -i 's/#Color/Color/' /etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 20/' /etc/pacman.conf
+sed -i 's/#HookDir     = /etc/pacman.d/hooks/HookDir     = /etc/pacman.d/hooks/' /etc/pacman.conf
 #Issues with installing Audio via default archinstall script; fix
 pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa base-devel --needed --noconfirm
 systemctl --user enable --now pipewire.service wireplumber.service pipewire-pulse.service
