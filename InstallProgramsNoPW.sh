@@ -48,6 +48,11 @@ printf "%s\n" "$PWonce" | sudo -S pacman -S geany --needed --noconfirm
 #Install curl
 printf "%s\n" "$PWonce" | sudo -S pacman -S curl --needed --noconfirm
 #Install OpenTabletDriver
+#First lets install dependencies
+printf "%s\n" "$PWonce" | sudo -S pacman -S dotnet-host dotnet-runtime --noconfirm
+wait
+#Not sure if needed /// Test it
+#Else: printf "%s\n" "$PWonce" | sudo -S pacman dotnet-targeting-pack netstandard-targeting-pack oniguruma dotnet-sdk jq --noconfirm
 # Downloads the pkgbuild from the AUR.
 git clone https://aur.archlinux.org/opentabletdriver.git
 wait
