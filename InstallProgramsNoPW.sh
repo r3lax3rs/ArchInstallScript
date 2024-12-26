@@ -52,8 +52,11 @@ printf "%s\n" "$PWonce" | sudo -S pacman -S curl --needed --noconfirm
 git clone https://aur.archlinux.org/opentabletdriver.git
 wait
 # Changes into the correct directory, pulls needed dependencies, then installs OpenTabletDriver
-cd opentabletdriver && printf "%s\n" "$PWonce" | sudo -S makepkg -si --noconfirm --needed
+cd opentabletdriver
 wait
+makepkg -s --noconfirm --needed
+wait
+printf "%s\n" "$PWonce" | sudo -S pacman -U *.pkg.tar.zst --noconfirm
 # Clean up leftovers
 cd ..
 rm -rf opentabletdriver
