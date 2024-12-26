@@ -88,5 +88,3 @@ echo "Everything has been installed"
 sleep 2
 echo "Exiting script"
 sleep 2
-wait
-rm -- "$0"
