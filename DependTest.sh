@@ -49,9 +49,9 @@ printf "%s\n" "$PWonce" | sudo -S pacman -S geany --needed --noconfirm
 printf "%s\n" "$PWonce" | sudo -S pacman -S curl --needed --noconfirm
 #Install OpenTabletDriver
 #First lets install dependencies
-printf "%s\n" "$PWonce" | sudo -S pacman netstandard-targeting-pack dotnet-targeting-pack netstandard-targeting-pack oniguruma dotnet-sdk libcom_err.so libverto-module-base sh libreadline.so libgdbm.so libncursesw.so gcc-libs glibc icu krb5 libunwind linux-api-headers openssl zlib bash e2fsprogs keyutils libcom_err.so libldap lmdb xz libsasl readline util-linux-libs gdbm ncurses sqlite jq --noconfirm
+printf "%s\n" "$PWonce" | sudo -S pacman -S netstandard-targeting-pack dotnet-targeting-pack netstandard-targeting-pack oniguruma dotnet-sdk libcom_err.so libverto-module-base sh libreadline.so libgdbm.so libncursesw.so gcc-libs glibc icu krb5 libunwind linux-api-headers openssl zlib bash e2fsprogs keyutils libcom_err.so libldap lmdb xz libsasl readline util-linux-libs gdbm ncurses sqlite jq --noconfirm
 wait
-printf "%s\n" "$PWonce" | sudo -S pacman dotnet-runtime dotnet-host --needed --noconfirm
+printf "%s\n" "$PWonce" | sudo -S pacman -S dotnet-runtime dotnet-host --needed --noconfirm
 # Downloads the pkgbuild from the AUR.
 git clone https://aur.archlinux.org/opentabletdriver.git
 wait
