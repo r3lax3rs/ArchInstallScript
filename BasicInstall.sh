@@ -94,17 +94,22 @@ wait
 #Adding Nvidia hook for updates
 cp /home/$USER/ScriptTesting/nvidia.hook /etc/pacman.d/hooks/
 wait
-#Check what settings needs to be overwritten based on kernel + gpu
+#Check what settings needs to be overwritten based on kernel + gpu hook
+old_path="#HookDir     = /etc/pacman.d/hooks/"
+new_path="HookDir     = /etc/pacman.d/hooks/"
+sed_hook="s|$old_path|$new_path|"
 if [[ "$kernel" == "zen" && "$mygpu" == "NVIDIA" ]]; then
-    echo "Script is already configured for linux-zen & nvidia-dkms"
+    echo "Hooks are not needed for DKMS versions; will already go automaticly"
 elif [[ "$kernel" == "lts" ]] && "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/Target=nvidia-dkms/Target=nvidia-lts/' /etc/pacman.d/hooks/nvidia.hook
     sed -i 's/Target=linux-zen/Target=linux-lts/' /etc/pacman.d/hooks/nvidia.hook
+    sed -i "$sed_script" /etc/pacman.conf
     echo "Config has been rewritten for linux-lts & nvidia-lts"
     sleep 2
 elif [[ "$linuxkernel" == "arch" ]] && "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/Target=nvidia-dkms/Target=nvidia/' /etc/pacman.d/hooks/nvidia.hook
     sed -i 's/Target=linux-zen/Target=linux/' /etc/pacman.d/hooks/nvidia.hook
+    sed -i "$sed_script" /etc/pacman.conf
     echo "Config has been rewritten for linux default kernal and default nvidia drivers"
     sleep 2
 fi
