@@ -71,6 +71,8 @@ wait
 # Unload kernel modules
 printf "%s\n" "$PWonce" | sudo -S rmmod wacom hid_uclogic
 wait
+#Enable Opentabletdriver
+systemctl --user enable opentabletdriver.service --now
 #Install 1password
 #curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
 #wait
