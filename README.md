@@ -1,13 +1,13 @@
 -   My own installation script to make life a bit easier
 -   Some steps need to be done manually before using these
 -   When installing arch fresh even before using the default "archinstall" command to trigger the install script:
--   pacman-key --init
--   pacman-key --populate archlinux
--   pacman -Sy git base-devel --needed --noconfirm
--   git clone https://github.com/r3lax3rs/ScriptTesting
--   cd ScriptTesting
--   chmod +x PreInstall.sh
--   ./PreInstall.sh
+-   1. pacman-key --init
+-   2. pacman-key --populate archlinux
+-   3. pacman -Sy git base-devel --needed --noconfirm
+-   4. git clone https://github.com/r3lax3rs/ScriptTesting
+-   5. cd ScriptTesting
+-   6. chmod +x PreInstall.sh
+-   7. ./PreInstall.sh
 ---
 -  Then use the default archinstall script by typing in:
 -  archinstall
@@ -15,16 +15,16 @@
 -  When done with that, reboot and login to your account.
 -  Open the Konsole (ALT + T)
 -  This script is meant for Intel+NVidia users to install video card drivers + configure all settings + make nvidia hook for when there are updates.
--  cd ScriptTesting
--  chmod +x BasicInstall.sh
--  ./BasicInstall.sh
+-  1. cd ScriptTesting
+-  2. chmod +x BasicInstall.sh
+-  3. ./BasicInstall.sh
 - Reboot the system after this script
 ---
 - If you want to install the programs:
-- chmod +x InstallPrograms.sh
-- ./ InstallPrograms.sh
+- 1. chmod +x InstallPrograms.sh
+- 2. ./InstallPrograms.sh
 ---
 - If you want to install the program without having to enter your password each time:
-- chmod +x InstallProgramsNoPW.sh
-- ./InstallProgramsNoPW.sh
+- 1. chmod +x InstallProgramsNoPW.sh
+- 2. ./InstallProgramsNoPW.sh
 - Fill password in only once and the script will handle the rest
