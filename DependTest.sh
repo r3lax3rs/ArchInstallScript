@@ -49,9 +49,7 @@ printf "%s\n" "$PWonce" | sudo -S pacman -S geany --needed --noconfirm
 printf "%s\n" "$PWonce" | sudo -S pacman -S curl --needed --noconfirm
 #Install OpenTabletDriver
 #First lets install dependencies
-printf "%s\n" "$PWonce" | sudo -S pacman dotnet-targeting-pack netstandard-targeting-pack oniguruma dotnet-sdk jq --noconfirm
-wait
-printf "%s\n" "$PWonce" | sudo -S pacman -S dotnet-host dotnet-runtime --noconfirm
+printf "%s\n" "$PWonce" | sudo -S pacman netstandard-targeting-pack dotnet-targeting-pack netstandard-targeting-pack oniguruma dotnet-sdk libcom_err.so libverto-module-base sh libreadline.so libgdbm.so libncursesw.so dotnet-runtime gcc-libs glibc dotnet-host icu krb5 libunwind linux-api-headers openssl zlib bash e2fsprogs keyutils libcom_err.so libldap lmdb xz libsasl readline util-linux-libs gdbm ncurses sqlite jq --noconfirm
 wait
 # Downloads the pkgbuild from the AUR.
 git clone https://aur.archlinux.org/opentabletdriver.git
