@@ -73,13 +73,13 @@ wait
 printf "%s\n" "$PWonce" | sudo -S rmmod wacom hid_uclogic
 wait
 #Install 1password
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-wait
-git clone https://aur.archlinux.org/1password.git
-wait
-cd 1password
-wait
-printf "%s\n" "$PWonce" | sudo -S makepkg -si --noconfirm --needed
+#curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+#wait
+#git clone https://aur.archlinux.org/1password.git
+#wait
+#cd 1password
+#wait
+#printf "%s\n" "$PWonce" | sudo -S makepkg -si --noconfirm --needed
 #This part is to install Qem/KVM & VirtManager TODO
 #End of script
 echo "Everything has been installed"
