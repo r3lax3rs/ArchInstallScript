@@ -16,6 +16,23 @@ wait
 #This way makepkg wont invoke pw for dependencies
 printf "%s\n" "$PWonce" | sudo -S pacman -S go --noconfirm --needed
 wait
+####################################################################################
+# Package update go
+PACKAGE="go"
+# Check dependencies
+DEPENDENCIES=$(pacman -Qi "$PACKAGE" | grep "Depends On")
+# Update dependencies
+for DEPENDENCY in $DEPENDENCIES; do
+  if pacman -Qi "$DEPENDENCY" | grep -q "Version"; then
+    # Dependency is outdated, update it
+    printf "%s\n" "$PWonce" | sudo -S pacman -S "$DEPENDENCY"
+  fi
+done
+# Install/upgrade required dependencies
+pacman -S --asdeps $(pacman -Qdt)
+# Update the original package
+pacman -U "$PACKAGE"
+####################################################################################
 #Let's first install yay; a packet manager
 git clone https://aur.archlinux.org/yay.git
 wait
@@ -51,9 +68,151 @@ printf "%s\n" "$PWonce" | sudo -S pacman -S curl --needed --noconfirm
 #First lets install dependencies
 printf "%s\n" "$PWonce" | sudo -S pacman -S dotnet-host dotnet-runtime --noconfirm
 wait
+####################################################################################
+# Package update dotnet-host
+PACKAGE="dotnet-host"
+
+# Check dependencies
+DEPENDENCIES=$(pacman -Qi "$PACKAGE" | grep "Depends On")
+
+# Update dependencies
+for DEPENDENCY in $DEPENDENCIES; do
+  if pacman -Qi "$DEPENDENCY" | grep -q "Version"; then
+    # Dependency is outdated, update it
+    printf "%s\n" "$PWonce" | sudo -S pacman -S "$DEPENDENCY"
+  fi
+done
+
+# Install/upgrade required dependencies
+printf "%s\n" "$PWonce" | sudo -S pacman -S --asdeps $(pacman -Qdt)
+
+# Update the original package
+printf "%s\n" "$PWonce" | sudo -S pacman -U "$PACKAGE"
+####################################################################################
+# Package update dotnet-runtime
+PACKAGE="dotnet-runtime"
+
+# Check dependencies
+DEPENDENCIES=$(pacman -Qi "$PACKAGE" | grep "Depends On")
+
+# Update dependencies
+for DEPENDENCY in $DEPENDENCIES; do
+  if pacman -Qi "$DEPENDENCY" | grep -q "Version"; then
+    # Dependency is outdated, update it
+    pacman -S "$DEPENDENCY"
+  fi
+done
+
+# Install/upgrade required dependencies
+printf "%s\n" "$PWonce" | sudo -S pacman -S --asdeps $(pacman -Qdt)
+
+# Update the original package
+printf "%s\n" "$PWonce" | sudo -S pacman -U "$PACKAGE"
+####################################################################################
 #Need these dependencies aswell:
 printf "%s\n" "$PWonce" | sudo -S pacman dotnet-targeting-pack netstandard-targeting-pack oniguruma dotnet-sdk jq --noconfirm
 wait
+####################################################################################
+# Package update dotnet-targeting-pack
+PACKAGE="dotnet-targeting-pack"
+
+# Check dependencies
+DEPENDENCIES=$(pacman -Qi "$PACKAGE" | grep "Depends On")
+
+# Update dependencies
+for DEPENDENCY in $DEPENDENCIES; do
+  if pacman -Qi "$DEPENDENCY" | grep -q "Version"; then
+    # Dependency is outdated, update it
+    printf "%s\n" "$PWonce" | sudo -S pacman -S "$DEPENDENCY"
+  fi
+done
+
+# Install/upgrade required dependencies
+printf "%s\n" "$PWonce" | sudo -S pacman -S --asdeps $(pacman -Qdt)
+
+# Update the original package
+printf "%s\n" "$PWonce" | sudo -S pacman -U "$PACKAGE"
+####################################################################################
+# Package update netstandard-targeting-pack
+PACKAGE="netstandard-targeting-pack"
+
+# Check dependencies
+DEPENDENCIES=$(pacman -Qi "$PACKAGE" | grep "Depends On")
+
+# Update dependencies
+for DEPENDENCY in $DEPENDENCIES; do
+  if pacman -Qi "$DEPENDENCY" | grep -q "Version"; then
+    # Dependency is outdated, update it
+    pacman -S "$DEPENDENCY"
+  fi
+done
+
+# Install/upgrade required dependencies
+printf "%s\n" "$PWonce" | sudo -S pacman -S --asdeps $(pacman -Qdt)
+
+# Update the original package
+printf "%s\n" "$PWonce" | sudo -S pacman -U "$PACKAGE"
+####################################################################################
+# Package update oniguruma
+PACKAGE="oniguruma"
+
+# Check dependencies
+DEPENDENCIES=$(pacman -Qi "$PACKAGE" | grep "Depends On")
+
+# Update dependencies
+for DEPENDENCY in $DEPENDENCIES; do
+  if pacman -Qi "$DEPENDENCY" | grep -q "Version"; then
+    # Dependency is outdated, update it
+    printf "%s\n" "$PWonce" | sudo -S pacman -S "$DEPENDENCY"
+  fi
+done
+
+# Install/upgrade required dependencies
+printf "%s\n" "$PWonce" | sudo -S pacman -S --asdeps $(pacman -Qdt)
+
+# Update the original package
+printf "%s\n" "$PWonce" | sudo -S pacman -U "$PACKAGE"
+####################################################################################
+# Package update dotnet-sdk
+PACKAGE="dotnet-sdk"
+
+# Check dependencies
+DEPENDENCIES=$(pacman -Qi "$PACKAGE" | grep "Depends On")
+
+# Update dependencies
+for DEPENDENCY in $DEPENDENCIES; do
+  if pacman -Qi "$DEPENDENCY" | grep -q "Version"; then
+    # Dependency is outdated, update it
+    printf "%s\n" "$PWonce" | sudo -S pacman -S "$DEPENDENCY"
+  fi
+done
+
+# Install/upgrade required dependencies
+printf "%s\n" "$PWonce" | sudo -S pacman -S --asdeps $(pacman -Qdt)
+
+# Update the original package
+printf "%s\n" "$PWonce" | sudo -S pacman -U "$PACKAGE"
+####################################################################################
+# Package update jq
+PACKAGE="jq"
+
+# Check dependencies
+DEPENDENCIES=$(pacman -Qi "$PACKAGE" | grep "Depends On")
+
+# Update dependencies
+for DEPENDENCY in $DEPENDENCIES; do
+  if pacman -Qi "$DEPENDENCY" | grep -q "Version"; then
+    # Dependency is outdated, update it
+    pacman -S "$DEPENDENCY"
+  fi
+done
+
+# Install/upgrade required dependencies
+printf "%s\n" "$PWonce" | sudo -S pacman -S --asdeps $(pacman -Qdt)
+
+# Update the original package
+printf "%s\n" "$PWonce" | sudo -S pacman -U "$PACKAGE"
+####################################################################################
 # Downloads the pkgbuild from the AUR.
 git clone https://aur.archlinux.org/opentabletdriver.git
 wait
