@@ -66,7 +66,14 @@ cd 1password
 wait
 makepkg -si --noconfirm
 #This part is to install Qem/KVM & VirtManager TODO
-#
+#Install everything needed for QEMU/KVM Virtmanager
+sudo pacman -S qemu-full qemu-img libvirt virt-install virt-manager virt-viewer edk2-ovmf dnsmasq swtpm guestfs-tools libosinfo tuned --noconfirm --needed
+wait
+#Enable services for Virtmanager
+sudo systemctl enable libvirtd.service
+wait
+sudo systemctl start libvirtd.service
+echo "QEMU/KVM Virtmanager has been installed"
 #Installing the part that is needed to share clipboard for VM's
 #sudo pacman -S spice-vdagent
 #End of script
