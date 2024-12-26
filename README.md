@@ -18,3 +18,12 @@
 -  cd ScriptTesting
 -  chmod +x BasicInstall.sh
 -  ./BasicInstall.sh
+- Reboot the system after this script
+
+- If you want to install the programs:
+- chmod +x InstallPrograms.sh
+- ./ InstallPrograms.sh
+
+- If you want to install the program without having to enter your password each time:
+- chmod +x InstallProgramsNoPW.sh
+- ./InstallProgramsNoPW.sh
