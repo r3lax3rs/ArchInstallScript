@@ -66,6 +66,9 @@ cd 1password
 wait
 makepkg -si --noconfirm
 #This part is to install Qem/KVM & VirtManager TODO
+#
+#Installing the part that is needed to share clipboard for VM's
+#sudo pacman -S spice-vdagent
 #End of script
 echo "Everything has been installed"
 sleep 2
