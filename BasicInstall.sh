@@ -26,7 +26,7 @@ export mygpu=`lspci -v |grep VGA | awk {'print $5'}`
 #This script needs to be run as root
 #make something that checks this and exits when script is not executed as root
 #Disable systemd sleep services
-systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target 2> /dev/null
+systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 wait
 #Symlink root KDE to User KDE (else we don't see the theme switching, only after logging out/rebooting)
 #ln -s /home/$USER/.kde /root/.kde ->>> mabye also not the way to go
