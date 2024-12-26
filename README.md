@@ -27,3 +27,4 @@
 - If you want to install the program without having to enter your password each time:
 - chmod +x InstallProgramsNoPW.sh
 - ./InstallProgramsNoPW.sh
+- Fill password in only once and the script will handle the rest
