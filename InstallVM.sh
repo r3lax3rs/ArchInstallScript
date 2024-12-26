@@ -12,3 +12,11 @@ read -p "Password: " -s PWonce
 #First lets make sure our system is updated
 printf "%s\n" "$PWonce" | sudo -S pacman -Syu --noconfirm
 wait
+#Install everything needed for QEMU/KVM Virtmanager
+printf "%s\n" "$PWonce" | sudo -S pacman -S qemu-full qemu-img libvirt virt-install virt-manager virt-viewer edk2-ovmf dnsmasq swtpm guestfs-tools libosinfo tuned
+wait
+#Enable
+sudo systemctl enable libvirtd.service
+wait
+sudo systemctl start libvirtd.service
+echo "QEMU/KVM Virtmanager has been installed"
