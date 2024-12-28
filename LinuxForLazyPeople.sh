@@ -22,7 +22,7 @@ select opt in "${options[@]}"
 do
       case $opt in
         "Check Mouse Acceleration")
-                echo -e "${Red}$(xset q | grep -A 1 Pointer)${Cyan2}"
+                echo -e "${Red}$(xset q | grep -A 1 Pointer)${Cyan}"
                 ;;
         "Disable Mouse Acceleration")
                 xset m 0 0
@@ -31,7 +31,7 @@ do
                 mainArch
                 ;;
         "Quit")
-                echo -e "${Red}Quiting...${Cyan2}"
+                echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
         *)
@@ -80,10 +80,10 @@ do
                 yay -Syu
                 ;;
         "Check IP Address")
-                echo -e "${Red}$(ip addr){Cyan2}"
+                echo -e "${Red}$(ip addr){Cyan}"
                 ;;
         "Check Kernel")
-                echo -e "${Red}$(uname -r){Cyan2}"
+                echo -e "${Red}$(uname -r){Cyan}"
                 ;;
         "Advanced Mouse Settings")
                 mouseArch
