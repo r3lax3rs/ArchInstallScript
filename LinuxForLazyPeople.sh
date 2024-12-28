@@ -1,7 +1,40 @@
 #!/bin/bash
 #Lazy People Script
-Kernal=`uname -r`
+export Kernel=$(uname -r)
 export whichOS=$(cat /etc/*release | grep PRETTY_NAME | cut -d '=' -f2- | tr -d '"' | awk '{print $1}')
+#Mouse settings Arch:
+mouseArch() {
+clear
+echo "-----------------------------------------"
+echo "What would you like to do?"
+echo "-----------------------------------------"
+echo
+echo
+
+Result=""
+COLUMNS=30
+PS3="Please select an option: "
+options=("Check Mouse Acceleration" "Disable Mouse Acceleration" "Quit")
+select opt in "${options[@]}"
+do
+      case $opt in
+        "Check Mouse Acceleration")
+                xset q | grep -A 1 Pointer
+                ;;
+        "Disable Mouse Acceleration")
+                xset m 0 0
+                ;;
+        "Quit")
+                echo "Quiting..."
+                break
+                ;;
+        *)
+                echo "Invalid option"
+                break
+                ;;
+      esac
+done
+}
 #Arch Linux part
 mainArch() {
 clear
