@@ -115,7 +115,9 @@ elif [[ "$linuxkernel" == "arch" ]] && [[ "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/Target=linux-zen/Target=linux/' /etc/pacman.d/hooks/nvidia.hook
     sed -i "$sed_hook" /etc/pacman.conf
     echo "Config has been rewritten for linux default kernal and default nvidia drivers"
-    sleep 2
+else
+    echo "You don't have zen, lts or default linux kernel. Exiting!"
+    sleep 3
 fi
 wait
 #Editing GRUB config for Intel+Nvidia
