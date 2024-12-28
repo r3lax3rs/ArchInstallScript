@@ -110,7 +110,7 @@ elif [[ "$kernel" == "lts" ]] && "$mygpu" == "NVIDIA" ]]; then
     sed -i "$sed_hook" /etc/pacman.conf
     echo "Config has been rewritten for linux-lts & nvidia-lts"
     sleep 2
-elif [[ "$linuxkernel" == "arch" ]] && "$mygpu" == "NVIDIA" ]]; then
+elif [[ "$linuxkernel" == "arch" ]] && [[ "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/Target=nvidia-dkms/Target=nvidia/' /etc/pacman.d/hooks/nvidia.hook
     sed -i 's/Target=linux-zen/Target=linux/' /etc/pacman.d/hooks/nvidia.hook
     sed -i "$sed_hook" /etc/pacman.conf
