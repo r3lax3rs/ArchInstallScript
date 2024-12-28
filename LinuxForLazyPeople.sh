@@ -20,7 +20,7 @@ echo
 echo
 
 Result=""
-COLUMNS=20
+COLUMNS=25
 PS3="Please select an option: "
 options=("Update-pacman" "Update-yay" "Check IP Address" "Check Kernel" "Quit")
 select opt in "${options[@]}"
@@ -67,7 +67,7 @@ echo
 echo
 
 Result=""
-COLUMNS=20
+COLUMNS=25
 PS3="Please select an option: "
 options=("Update-Rocky" "Check IP Address" "Check Kernel" "Quit")
 select opt in "${options[@]}"
@@ -111,7 +111,7 @@ echo
 echo
 
 Result=""
-COLUMNS=20
+COLUMNS=25
 PS3="Please select an option: "
 options=("Update-Ubuntu" "Check IP Address" "Check Kernel" "Quit")
 select opt in "${options[@]}"
