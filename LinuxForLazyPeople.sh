@@ -10,9 +10,9 @@ export MouseAccel=$(xset q | grep -A 1 Pointer)
 #Mouse settings Arch:
 mouseArch() {
 clear
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo "What would you like to do?"
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo
 echo
 
@@ -44,9 +44,9 @@ do
       REPLAY=
 echo
 echo
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo "What would you like to do?"
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo
 echo
 done
