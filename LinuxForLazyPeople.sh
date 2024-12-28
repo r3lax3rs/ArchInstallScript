@@ -14,7 +14,7 @@ echo
 Result=""
 COLUMNS=30
 PS3="Please select an option: "
-options=("Check Mouse Acceleration" "Disable Mouse Acceleration" "Quit")
+options=("Check Mouse Acceleration" "Disable Mouse Acceleration" "Back to Main Menu" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
@@ -23,6 +23,9 @@ do
                 ;;
         "Disable Mouse Acceleration")
                 xset m 0 0
+                ;;
+        "Back to Main Menu")
+                mainArch
                 ;;
         "Quit")
                 echo "Quiting..."
@@ -53,9 +56,9 @@ echo
 echo
 
 Result=""
-COLUMNS=25
+COLUMNS=30
 PS3="Please select an option: "
-options=("Update-pacman" "Update-yay" "Check IP Address" "Check Kernel" "Quit")
+options=("Update-pacman" "Update-yay" "Check IP Address" "Check Kernel" "Advanced Mouse Settings" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
@@ -70,6 +73,9 @@ do
                 ;;
         "Check Kernel")
                 uname -r
+                ;;
+        "Advanced Mouse Settings")
+                mouseArch
                 ;;
         "Quit")
                 echo "Quiting..."
