@@ -22,7 +22,7 @@ select opt in "${options[@]}"
 do
       case $opt in
         "Check Mouse Acceleration")
-                echo -e "${Red}$(xset q | grep -A 1 Pointer){Cyan2}"
+                echo -e "${Red}$(xset q | grep -A 1 Pointer)${Cyan2}"
                 ;;
         "Disable Mouse Acceleration")
                 xset m 0 0
