@@ -1,5 +1,8 @@
 #!/bin/bash
 #Lazy People Script
+export Red='\e[38;5;196m'
+export Reset='\033[0m'
+export Cyan='e\[38;5;87m'
 export Kernel=$(uname -r)
 export whichOS=$(cat /etc/*release | grep PRETTY_NAME | cut -d '=' -f2- | tr -d '"' | awk '{print $1}')
 #Mouse settings Arch:
@@ -19,7 +22,7 @@ select opt in "${options[@]}"
 do
       case $opt in
         "Check Mouse Acceleration")
-                xset q | grep -A 1 Pointer
+                echo -e "${Red}$(xset q | grep -A 1 Pointer){Cyan2}"
                 ;;
         "Disable Mouse Acceleration")
                 xset m 0 0
@@ -28,7 +31,7 @@ do
                 mainArch
                 ;;
         "Quit")
-                echo "Quiting..."
+                echo -e "${Red}Quiting...${Cyan2}"
                 exit
                 ;;
         *)
@@ -36,6 +39,14 @@ do
                 exit
                 ;;
       esac
+      REPLAY=
+echo
+echo
+echo "-----------------------------------------"
+echo "What would you like to do?"
+echo "-----------------------------------------"
+echo
+echo
 done
 }
 #Arch Linux part
@@ -69,10 +80,10 @@ do
                 yay -Syu
                 ;;
         "Check IP Address")
-                ip addr
+                echo -e "${Red}$(ip addr){Cyan2}"
                 ;;
         "Check Kernel")
-                uname -r
+                echo -e "${Red}$(uname -r){Cyan2}"
                 ;;
         "Advanced Mouse Settings")
                 mouseArch
@@ -86,6 +97,17 @@ do
                 exit
                 ;;
       esac
+      REPLY=
+echo
+echo
+echo "-----------------------------------------"
+echo "You are using: $whichOS"
+echo "With Kernel: $Kernel"
+echo "-----------------------------------------"
+echo "What do you want to do?"
+echo "-----------------------------------------"
+echo
+echo
 done
 }
 #Rocky Linux Part
