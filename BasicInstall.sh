@@ -12,9 +12,10 @@ wait
 #rm -- "$0"
 #list of variables
 #Color variables for error ouput
-#flashred="\033[5;31;40m"
-#red="\033[31;40m"
-#none="\033[0m"
+export Red='\e[38;5;196m'
+export Reset='\033[0m'
+export Cyan='\e[38;5;87m'
+#
 intel="GenuineIntel"
 AMDCPU="AuthenticAMD"
 #Variables for comparisons
