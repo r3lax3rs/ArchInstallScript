@@ -86,10 +86,13 @@ printf "%s\n" "$PWonce" | sudo -S pacman -U *.pkg.tar.zst --noconfirm
 printf "%s\n" "$PWonce" | sudo -S pacman -S qemu-full qemu-img libvirt virt-install virt-manager virt-viewer edk2-ovmf dnsmasq swtpm guestfs-tools libosinfo tuned --noconfirm --needed
 wait
 #Enable services for Virtmanager
-sudo systemctl enable libvirtd.service
+printf "%s\n" "$PWonce" | sudo -S systemctl enable libvirtd.service
 wait
-sudo systemctl start libvirtd.service
+printf "%s\n" "$PWonce" | sudo -S systemctl start libvirtd.service
 echo "QEMU/KVM Virtmanager has been installed"
+wait
+#Enable virt manager thing that causes an error after a reboot and you want to start it:
+printf "%s\n" "$PWonce" | sudo -S virsh net-autostart default
 #Installing the part that is needed to share clipboard for VM's
 #printf "%s\n" "$PWonce" | sudo -S pacman -S spice-vdagent
 #End of script
