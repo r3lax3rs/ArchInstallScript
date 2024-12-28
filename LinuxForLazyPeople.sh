@@ -2,9 +2,11 @@
 #Lazy People Script
 export Red='\e[38;5;196m'
 export Reset='\033[0m'
-export Cyan='e\[38;5;87m'
+export Cyan='\e[38;5;87m'
 export Kernel=$(uname -r)
 export whichOS=$(cat /etc/*release | grep PRETTY_NAME | cut -d '=' -f2- | tr -d '"' | awk '{print $1}')
+export MouseAccel=$(xset q | grep -A 1 Pointer)
+#export Acceloff=$(xset m 0 0)
 #Mouse settings Arch:
 mouseArch() {
 clear
@@ -22,7 +24,7 @@ select opt in "${options[@]}"
 do
       case $opt in
         "Check Mouse Acceleration")
-                echo -e "${Red}$(xset q | grep -A 1 Pointer)${Cyan}"
+                echo -e "${Red}${MouseAccel}${Cyan}"
                 ;;
         "Disable Mouse Acceleration")
                 xset m 0 0
@@ -52,17 +54,17 @@ done
 #Arch Linux part
 mainArch() {
 clear
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo "Welcome to this simplified script!"
 echo "The script will automaticly detect"
 echo "which OS you are using and redirects"
 echo "you to the right set of commands"
-echo "-----------------------------------------"
-echo "You are using: $whichOS"
-echo "With Kernel: $Kernel"
-echo "-----------------------------------------"
+echo "${Red}-----------------------------------------${Cyan}"
+echo -e "You are using: ${Red}${whichOS}${Cyan}"
+echo -e "With Kernel: ${Red}${Kernel}${Cyan}"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo "What do you want to do?"
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo
 echo
 
@@ -80,16 +82,16 @@ do
                 yay -Syu
                 ;;
         "Check IP Address")
-                echo -e "${Red}$(ip addr){Cyan}"
+                echo -e "${Red}$(ip addr)${Cyan}"
                 ;;
         "Check Kernel")
-                echo -e "${Red}$(uname -r){Cyan}"
+                echo -e "${Red}${Kernel}${Cyan}"
                 ;;
         "Advanced Mouse Settings")
                 mouseArch
                 ;;
         "Quit")
-                echo "Quiting..."
+                echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
         *)
@@ -100,12 +102,12 @@ do
       REPLY=
 echo
 echo
-echo "-----------------------------------------"
-echo "You are using: $whichOS"
-echo "With Kernel: $Kernel"
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo -e "You are using: ${Red}${whichOS}${Cyan}"
+echo -e "With Kernel: ${Red}${Kernel}${Cyan}"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo "What do you want to do?"
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo
 echo
 done
@@ -113,17 +115,17 @@ done
 #Rocky Linux Part
 mainRocky() {
 clear
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo "Welcome to this simplified script!"
 echo "The script will automaticly detect"
 echo "which OS you are using and redirects"
 echo "you to the right set of commands"
-echo "-----------------------------------------"
-echo "You are using: $whichOS"
-echo "With Kernel: $Kernel"
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo -e "You are using: ${Red}${whichOS}${Cyan}"
+echo -e "With Kernel: ${Red}${Kernel}${Cyan}"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo "What do you want to do?"
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo
 echo
 
@@ -141,10 +143,10 @@ do
                 ip addr
                 ;;
         "Check Kernel")
-                uname -r
+                echo -e "${Red}${Kernel}${Cyan}"
                 ;;
         "Quit")
-                echo "Quiting..."
+                echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
         *)
@@ -152,22 +154,33 @@ do
                 exit
                 ;;
       esac
+      REPLY=
+echo
+echo
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo -e "You are using: ${Red}${whichOS}${Cyan}"
+echo -e "With Kernel: ${Red}${Kernel}${Cyan}"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What do you want to do?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo
+echo
 done
 }
 #Ubuntu Linux Part
 mainUbuntu() {
 clear
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo "Welcome to this simplified script!"
 echo "The script will automaticly detect"
 echo "which OS you are using and redirects"
 echo "you to the right set of commands"
-echo "-----------------------------------------"
-echo "You are using: $whichOS"
-echo "With Kernel: $Kernel"
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo -e "You are using: ${Red}${whichOS}${Cyan}"
+echo -e "With Kernel: ${Red}${Kernel}${Cyan}"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo "What do you want to do?"
-echo "-----------------------------------------"
+echo -e "${Red}-----------------------------------------${Cyan}"
 echo
 echo
 
@@ -185,17 +198,28 @@ do
                 ip addr
                 ;;
         "Check Kernel")
-                uname -r
+                echo -e "${Red}${Kernel}${Cyan}"
                 ;;
         "Quit")
-                echo "Quiting..."
+                echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
         *)
-                echo "Invalid option"
+                echo -e "${Red}Invalid option${Cyan}"
                 exit
                 ;;
       esac
+      REPLY=
+echo
+echo
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo -e "You are using: ${Red}${whichOS}${Cyan}"
+echo -e "With Kernel: ${Red}${Kernel}${Cyan}"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What do you want to do?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo
+echo
 done
 }
 
