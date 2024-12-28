@@ -56,8 +56,9 @@ elif [[ "$linuxkernal" == "arch" ]]; then
     sleep 2
     pacman -S linux-headers linux-firmware --needed --noconfirm
 else
-    echo "You don't have linux, linux-lts or linux-zen kernel installed on your system!"
-    echo "No kernal headers will be installed! Script will continue in 5s"
+    
+    echo -e "${Red}You don't have linux, linux-lts or linux-zen kernel installed on your system!${Reset}"
+    echo -e "${Red}No kernal headers will be installed! Script will continue in 5s${Reset}"
     sleep 5
 fi
 wait
@@ -67,9 +68,9 @@ if [[ "$cpu" == "$intel" ]]; then
 elif [[ "$cpu" == "$AMDCPU" ]]; then
     pacman -S amd-ucode --needed --noconfirm
 else
-    echo "Error: You don't have an Intel or AMD CPU!"
-    echo "No ucode will be installed"
-    echo "Skipping to next step in 3s"
+    echo -e "${Red}Error: You don't have an Intel or AMD CPU!${Reset}"
+    echo -e "${Red}No ucode will be installed${Reset}"
+    echo -e "${Red}Skipping to next step in 3s${Reset}"
     sleep 3
 fi
 wait
@@ -90,10 +91,10 @@ fi
 wait
 #Cehck if /etc/pacman.d/hooks/ directory exists; if not adding hooks map
 if [ -d "/etc/pacman.d/hooks/" ]; then
-    echo "Directory already exists, will continue to copy nvidia.hook"
+    echo -e "${Cyan}Directory already exists, ${Reset}will continue to copy nvidia.hook"
 elif [ ! -d "/etc/pacman.d/hooks/" ]; then
     mkdir "/etc/pacman.d/hooks"
-    echo "directory hooks has been added; will copy nvidia.hook next"
+    echo "Directory hooks has been added; will copy nvidia.hook next"
 fi
 wait
 #Adding Nvidia hook for updates
@@ -104,27 +105,27 @@ old_path="#HookDir     = /etc/pacman.d/hooks/"
 new_path="HookDir     = /etc/pacman.d/hooks/"
 sed_hook="s|$old_path|$new_path|"
 if [[ "$kernel" == "zen" && "$mygpu" == "NVIDIA" ]]; then
-    echo "Hooks are not needed for DKMS versions; will already go automaticly"
+    echo -e "${Cyan}Hooks are not needed for DKMS versions; will already go automaticly${Reset}"
 elif [[ "$kernel" == "lts" ]] && "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/Target=nvidia-dkms/Target=nvidia-lts/' /etc/pacman.d/hooks/nvidia.hook
     sed -i 's/Target=linux-zen/Target=linux-lts/' /etc/pacman.d/hooks/nvidia.hook
     sed -i "$sed_hook" /etc/pacman.conf
-    echo "Config has been rewritten for linux-lts & nvidia-lts"
+    echo -e "${Cyan}Config has been rewritten for linux-lts & nvidia-lts${Reset}"
     sleep 2
 elif [[ "$linuxkernel" == "arch" ]] && [[ "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/Target=nvidia-dkms/Target=nvidia/' /etc/pacman.d/hooks/nvidia.hook
     sed -i 's/Target=linux-zen/Target=linux/' /etc/pacman.d/hooks/nvidia.hook
     sed -i "$sed_hook" /etc/pacman.conf
-    echo "Config has been rewritten for linux default kernal and default nvidia drivers"
+    echo -e "${Cyan}Config has been rewritten for linux default kernal and default nvidia drivers${Reset}"
 else
-    echo "You don't have zen, lts or default linux kernel. Exiting!"
+    echo -e "${Red}You don't have zen, lts or default linux kernel. Exiting!${Reset}"
     sleep 3
 fi
 wait
 #Editing GRUB config for Intel+Nvidia
 if [[ "$cpu" == "$intel" ]] && [[ "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=3 udev.log=priority=3 nvidia_drm.modeset=1 nvidia-drm.fbdev=1 ibt=off"/' /etc/default/grub
-    echo "lines have been added to /etc/default/grub"
+    echo -e "${Cyan}lines have been added to /etc/default/grub${Reset}"
 fi
 wait
 #Adding user to video group
@@ -133,8 +134,7 @@ usermod -aG video $USER
 wait
 #Write settings to GRUB & mkinitcpio at the end of everything
 grub-mkconfig -o /boot/grub/grub.cfg && mkinitcpio -P 2> /dev/null
-echo "All settings have been written to the configs."
-echo "Please reboot your system"
+echo -e "${Cyan}All settings have been written to the configs.${Reset}"
+echo -e "${Red}Please reboot your system${Reset}"
 sleep 10
 wait
-#Advice to reboot (make script which gives user the option to reboot or not)
