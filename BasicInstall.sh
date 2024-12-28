@@ -96,7 +96,7 @@ elif [ ! -d "/etc/pacman.d/hooks/" ]; then
 fi
 wait
 #Adding Nvidia hook for updates
-cp /home/$USER/ScriptTesting/nvidia.hook /etc/pacman.d/hooks/
+cp /home/$USER/ArchInstallScript/nvidia.hook /etc/pacman.d/hooks/
 wait
 #Check what settings needs to be overwritten based on kernel + gpu hook
 old_path="#HookDir     = /etc/pacman.d/hooks/"
