@@ -25,7 +25,10 @@ export cpu=`cat /proc/cpuinfo |grep vendor_id | awk '!seen[$0]++' | awk {'print 
 export mygpu=`lspci -v |grep VGA | awk {'print $5'}`
 export CLI_PS1="\e[38;5;87m\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[01;37m\]\342\234\227]\342\224\200\")\e[38;5;196m[\[\033[01;37m\]\e[38;5;87m\t\e[38;5;196m]\e[1;30m\342\224\200\e[38;5;87m[\[\033[01;37m\]\e[38;5;196m\u\e[38;5;87m]\n\342\224\224\342\224\200\342\224\200> \[\033[01;37m\]\e[38;5;87m\W\e[1;30m $ \[\033[01;37m\]\e[38;5;196m>>\\[\\033[0m\\]\e[38;5;87m "
 #Make a better looking PS1:
-
+old_PS1="PS1='[\u@\h \W\$ '"
+new_PS1="\e[38;5;87m\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[01;37m\]\342\234\227]\342\224\200\")\e[38;5;196m[\[\033[01;37m\]\e[38;5;87m\t\e[38;5;196m]\e[1;30m\342\224\200\e[38;5;87m[\[\033[01;37m\]\e[38;5;196m\u\e[38;5;87m]\n\342\224\224\342\224\200\342\224\200> \[\033[01;37m\]\e[38;5;87m\W\e[1;30m $ \[\033[01;37m\]\e[38;5;196m>>\\[\\033[0m\\]\e[38;5;87m "
+sed_PS1="s|$old_PS1|$new_PS1|"
+sed -i "$sed_PS1" ~/.bashrc
 #Disable systemd sleep services
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 wait
