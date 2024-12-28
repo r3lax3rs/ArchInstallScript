@@ -29,11 +29,11 @@ do
                 ;;
         "Quit")
                 echo "Quiting..."
-                break
+                exit
                 ;;
         *)
                 echo "Invalid option"
-                break
+                exit
                 ;;
       esac
 done
@@ -79,11 +79,11 @@ do
                 ;;
         "Quit")
                 echo "Quiting..."
-                break
+                exit
                 ;;
         *)
                 echo "Invalid option"
-                break
+                exit
                 ;;
       esac
 done
@@ -123,11 +123,11 @@ do
                 ;;
         "Quit")
                 echo "Quiting..."
-                break
+                exit
                 ;;
         *)
                 echo "Invalid option"
-                break
+                exit
                 ;;
       esac
 done
@@ -167,11 +167,11 @@ do
                 ;;
         "Quit")
                 echo "Quiting..."
-                break
+                exit
                 ;;
         *)
                 echo "Invalid option"
-                break
+                exit
                 ;;
       esac
 done
