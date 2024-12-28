@@ -41,7 +41,7 @@ do
                 exit
                 ;;
       esac
-      REPLAY=
+      REPLY=
 echo
 echo
 echo -e "${Red}-----------------------------------------${Cyan}"
