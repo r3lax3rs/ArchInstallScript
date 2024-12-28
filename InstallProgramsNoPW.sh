@@ -93,6 +93,10 @@ echo "QEMU/KVM Virtmanager has been installed"
 wait
 #Enable virt manager thing that causes an error after a reboot and you want to start it:
 printf "%s\n" "$PWonce" | sudo -S virsh net-autostart default
+#Installing VIM (if it's not yet on there already)
+printf "%s\n" "$PWonce" | sudo -S pacman -S vim --needed --noconfirm
+#VIM Configuration:
+mv -i /home/$USER/ArchInstallScript/.vimrc /home/$USER/
 #Installing the part that is needed to share clipboard for VM's
 #printf "%s\n" "$PWonce" | sudo -S pacman -S spice-vdagent
 #End of script
