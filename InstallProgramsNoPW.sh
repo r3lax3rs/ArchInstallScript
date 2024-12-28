@@ -1,8 +1,12 @@
 #!/bin/bash
+#Color variables for error ouput
+export Red='\e[38;5;196m'
+export Reset='\033[0m'
+export Cyan='\e[38;5;87m'
 # Make sure this script is run as root
 if [[ $EUID -eq 0 ]]; then
     echo
-    echo "Don't run this script as root. It can mess up your system" 1>&2
+    echo -e "${Red}Don't run this script as root. It can mess up your system${Reset}" 1>&2
     echo
     exit
 fi
@@ -100,7 +104,7 @@ mv -i /home/$USER/ArchInstallScript/.vimrc /home/$USER/
 #Installing the part that is needed to share clipboard for VM's
 #printf "%s\n" "$PWonce" | sudo -S pacman -S spice-vdagent
 #End of script
-echo "Everything has been installed"
+echo -e "${Cyan}Everything has been installed.${Reset}"
 sleep 2
-echo "Exiting script"
+echo -e "${Cyan}Exiting script!${Reset}"
 sleep 2
