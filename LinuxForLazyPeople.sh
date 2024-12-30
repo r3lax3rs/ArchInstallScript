@@ -220,7 +220,7 @@ echo
 Result=""
 COLUMNS=25
 PS3="Please select an option: "
-options=("Update-Rocky" "Check IP Address" "Check Kernel" "Advanced Mouse Settings" "Quit")
+options=("Update-Rocky" "Check IP Address" "Check Kernel" "Advanced Mouse Settings" "Clear Cache" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
@@ -238,6 +238,9 @@ do
                 ;;
         "Advanced Mouse Settings")
                 mouseAdvanced
+                ;;
+        "Clear Cache")
+                clearRocky
                 ;;
         "Quit")
                 clear
