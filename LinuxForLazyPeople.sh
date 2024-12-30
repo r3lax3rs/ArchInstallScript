@@ -152,7 +152,7 @@ do
                 ;;
         "Check IP Address")
                 clear
-                ip addr
+                echo -e "${Red}$(ip addr)${Cyan}"
                 ;;
         "Check Kernel")
                 clear
@@ -165,7 +165,7 @@ do
                 ;;
         *)
                 clear
-                echo "Invalid option"
+                echo -e "${Red}Invalid option${Cyan}"
                 exit
                 ;;
       esac
