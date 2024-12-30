@@ -66,6 +66,58 @@ echo
 echo
 done
 }
+#Clear Cache Rocky
+clearRocky() {
+clear
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What would you like to do?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+
+Result=""
+COLUMNS=30
+PS3="Please select an option: "
+options=("Clearing PageCache" "Clearing Dentries and Inodes" "Clearing PageCache, Dentries & Inodes" "Clear Swap Space" "Back to main menu" "Quit")
+select opt in "${options[@]}"
+do
+      case $opt in
+        "Clearing PageCache")
+                clear
+                sudo sync; echo 1 > /proc/sys/vm/drop_caches
+                echo -e "${Red}Cleared PageCache${Cyan}"
+                ;;
+        "Clearing Dentries and Inodes")
+                clear
+                sudo sync; echo 2 > /proc/sys/vm/drop_caches
+                echo -e "${Red}Clearing Dentries and Inodes${Cyan}"
+                ;;
+        "Clearing PageCache, Dentries & Inodes")
+                clear
+                sudo sync; echo 3 > /proc/sys/vm/drop_caches
+                echo -e "${Red}Cleared PageCache, Dentries & Inodes${Cyan}"
+                ;;
+        "Clear Swap Space")
+                clear
+                sudo swapoff -a && sudo swapon -a
+                echo -e "${Red}Cleared Swap Space${Cyan}"
+                ;;
+        "Back to Main Menu")
+            if [[ "$whichOS" == "Ubuntu" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Ubuntu!${Cyan}" && mainUbuntu
+            elif [[ "$whichOS" == "Arch" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Arch!${Cyan}" && mainArch
+            elif [[ "$whichOS" == "Rocky" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Rocky!${Cyan}" && mainRocky
+            elif [[ "$whichOS" == "CentOS" ]]; then
+                    echo -e "${Cyan}Back to ${Red}CentOS${Cyan}" && mainCentOS
+            else
+                    echo -e "${Red}An error has occured. Exiting..." && exit
+            fi
+                ;;
+        "Quit")
+                clear
+                echo -e "${Red}Quiting...${Cyan}"
+                exit
+                ;;
 #Arch Linux part
 mainArch() {
 clear
