@@ -33,7 +33,17 @@ do
                 echo -e "${Red}Mouse Accel is off!${Acceloff}${Cyan}"
                 ;;
         "Back to Main Menu")
-                mainArch
+            if [[ "$whichOS" == "Ubuntu" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Ubuntu!${Cyan}" && mainUbuntu
+            elif [[ "$whichOS" == "Arch" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Arch!${Cyan}" && mainArch
+            elif [[ "$whichOS" == "Rocky" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Rocky!${Cyan}" && mainRocky
+            elif [[ "$whichOS" == "CentOS" ]]; then
+                    echo -e "${Cyan}Back to ${Red}CentOS${Cyan}" && mainCentOS
+            else
+                    echo -e "${Red}An error has occured. Exiting..." && exit
+            fi
                 ;;
         "Quit")
                 clear
