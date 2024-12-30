@@ -24,19 +24,23 @@ select opt in "${options[@]}"
 do
       case $opt in
         "Check Mouse Acceleration")
+                clear
                 echo -e "${Red}${MouseAccel}${Cyan}"
                 ;;
         "Disable Mouse Acceleration")
+                clear
                 xset m 0 0
                 ;;
         "Back to Main Menu")
                 mainArch
                 ;;
         "Quit")
+                clear
                 echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
         *)
+                clear
                 echo "Invalid option"
                 exit
                 ;;
@@ -76,25 +80,31 @@ select opt in "${options[@]}"
 do
       case $opt in
         "Update-pacman")
+                clear
                 sudo pacman -Syu
                 ;;
         "Update-yay")
+                clear
                 yay -Syu
                 ;;
         "Check IP Address")
+                clear
                 echo -e "${Red}$(ip addr)${Cyan}"
                 ;;
         "Check Kernel")
+                clear
                 echo -e "${Red}${Kernel}${Cyan}"
                 ;;
         "Advanced Mouse Settings")
                 mouseArch
                 ;;
         "Quit")
+                clear
                 echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
         *)
+                clear
                 echo "Invalid option"
                 exit
                 ;;
@@ -137,19 +147,24 @@ select opt in "${options[@]}"
 do
       case $opt in
         "Update-Rocky")
+                clear
                 sudo dnf update
                 ;;
         "Check IP Address")
+                clear
                 ip addr
                 ;;
         "Check Kernel")
+                clear
                 echo -e "${Red}${Kernel}${Cyan}"
                 ;;
         "Quit")
+                clear
                 echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
         *)
+                clear
                 echo "Invalid option"
                 exit
                 ;;
@@ -192,19 +207,24 @@ select opt in "${options[@]}"
 do
       case $opt in
         "Update-Ubuntu")
+                clear
                 sudo apt update && sudo apt upgrade
                 ;;
         "Check IP Address")
+                clear
                 ip addr
                 ;;
         "Check Kernel")
+                clear
                 echo -e "${Red}${Kernel}${Cyan}"
                 ;;
         "Quit")
+                clear
                 echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
         *)
+                clear
                 echo -e "${Red}Invalid option${Cyan}"
                 exit
                 ;;
