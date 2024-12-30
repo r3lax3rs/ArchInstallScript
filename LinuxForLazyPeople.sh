@@ -6,6 +6,7 @@ export Cyan='\e[38;5;87m'
 export Kernel=$(uname -r)
 export whichOS=$(cat /etc/*release | grep PRETTY_NAME | cut -d '=' -f2- | tr -d '"' | awk '{print $1}')
 export MouseAccel=$(xset q | grep -A 1 Pointer)
+export Session=$(loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type | cut -d "=" -f2-)
 #export Acceloff=$(xset m 0 0)
 #Mouse settings Arch:
 mouseArch() {
