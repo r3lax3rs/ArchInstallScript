@@ -9,7 +9,7 @@ export MouseAccel=$(xset q | grep -A 1 Pointer)
 export Session=$(loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type | cut -d "=" -f2-)
 export Acceloff=$(xset m 0 0)
 #Mouse settings Arch:
-mouseArch() {
+mouseAdvanced() {
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
 echo "What would you like to do?"
@@ -34,54 +34,6 @@ do
                 ;;
         "Back to Main Menu")
                 mainArch
-                ;;
-        "Quit")
-                clear
-                echo -e "${Red}Quiting...${Cyan}"
-                exit
-                ;;
-        *)
-                clear
-                echo "Invalid option"
-                exit
-                ;;
-      esac
-      REPLY=
-echo
-echo
-echo -e "${Red}-----------------------------------------${Cyan}"
-echo "What would you like to do?"
-echo -e "${Red}-----------------------------------------${Cyan}"
-echo
-echo
-done
-}
-#Mouse Rocky
-mouseRocky() {
-clear
-echo -e "${Red}-----------------------------------------${Cyan}"
-echo "What would you like to do?"
-echo -e "${Red}-----------------------------------------${Cyan}"
-echo
-echo
-
-Result=""
-COLUMNS=30
-PS3="Please select an option: "
-options=("Check Mouse Acceleration" "Disable Mouse Acceleration" "Back to Main Menu" "Quit")
-select opt in "${options[@]}"
-do
-      case $opt in
-        "Check Mouse Acceleration")
-                clear
-                echo -e "${Red}${MouseAccel}${Cyan}"
-                ;;
-        "Disable Mouse Acceleration")
-                clear
-                echo -e "${Red}Mouse Accel is off!${Acceloff}${Cyan}"
-                ;;
-        "Back to Main Menu")
-                mainRocky
                 ;;
         "Quit")
                 clear
@@ -146,7 +98,7 @@ do
                 echo -e "${Red}${Kernel}${Cyan}"
                 ;;
         "Advanced Mouse Settings")
-                mouseArch
+                mouseAdvanced
                 ;;
         "Quit")
                 clear
@@ -211,7 +163,7 @@ do
                 echo -e "${Red}${Kernel}${Cyan}"
                 ;;
         "Advanced Mouse Settings")
-                mouseRocky
+                mouseAdvanced
                 ;;
         "Quit")
                 clear
