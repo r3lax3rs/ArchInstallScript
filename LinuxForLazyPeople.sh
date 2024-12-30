@@ -119,8 +119,17 @@ do
                 exit
                 ;;
                 REPLY=
-            esac
-      }
+      esac
+      REPLY=
+echo
+echo
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What would you like to do?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo
+echo
+done
+}
 #Arch Linux part
 mainArch() {
 clear
