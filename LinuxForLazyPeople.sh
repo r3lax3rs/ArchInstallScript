@@ -9,7 +9,7 @@ export MouseAccel=$(xset q | grep -A 1 Pointer)
 export Session=$(loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type | cut -d "=" -f2-)
 #export Acceloff=$(xset m 0 0)
 #Mouse settings Arch:
-mouseArch() {
+mouseAdvanced() {
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
 echo "What would you like to do?"
@@ -98,7 +98,7 @@ do
                 echo -e "${Red}${Kernel}${Cyan}"
                 ;;
         "Advanced Mouse Settings")
-                mouseArch
+                mouseAdvanced
                 ;;
         "Quit")
                 clear
@@ -146,7 +146,7 @@ echo
 Result=""
 COLUMNS=25
 PS3="Please select an option: "
-options=("Update-Rocky" "Check IP Address" "Check Kernel" "Quit")
+options=("Update-Rocky" "Check IP Address" "Check Kernel" "Advanced Mouse Settings" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
@@ -161,6 +161,9 @@ do
         "Check Kernel")
                 clear
                 echo -e "${Red}${Kernel}${Cyan}"
+                ;;
+        "Advanced Mouse Settings")
+                mouseAdvanced
                 ;;
         "Quit")
                 clear
