@@ -118,6 +118,9 @@ do
                 echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
+                REPLY=
+            esac
+      }
 #Arch Linux part
 mainArch() {
 clear
