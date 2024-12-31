@@ -118,7 +118,6 @@ do
                 echo -e "${Red}Quiting...${Cyan}"
                 exit
                 ;;
-                REPLY=
       esac
       REPLY=
 echo
