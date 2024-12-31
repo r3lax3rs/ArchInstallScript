@@ -297,7 +297,7 @@ do
                 ;;
         "Check IP Address")
                 clear
-                ip addr
+                echo -e "${Red}$(ip addr)${Cyan}"
                 ;;
         "Check Kernel")
                 clear
@@ -359,7 +359,7 @@ do
                 ;;
         "Check IP Address")
                 clear
-                ip addr
+                echo -e "${Red}$(ip addr)${Cyan}"
                 ;;
         "Check Kernel")
                 clear
