@@ -329,7 +329,68 @@ echo
 echo
 done
 }
+#Debian Linux Part
+mainDebian() {
+clear
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "Welcome to this simplified script!"
+echo "The script will automaticly detect"
+echo "which OS you are using and redirects"
+echo "you to the right set of commands"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo -e "You are using: ${Red}${whichOS}${Cyan}"
+echo -e "Kernel: ${Red}${Kernel}${Cyan}"
+echo -e "Session: ${Red}${Session}${Cyan}"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What do you want to do?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo
+echo
 
+Result=""
+COLUMNS=25
+PS3="Please select an option: "
+options=("Update-Debian" "Check IP Address" "Check Kernel" "Quit")
+select opt in "${options[@]}"
+do
+      case $opt in
+        "Update-Debian")
+                clear
+                sudo apt-get update && sudo apt-get upgrade
+                ;;
+        "Check IP Address")
+                clear
+                ip addr
+                ;;
+        "Check Kernel")
+                clear
+                echo -e "${Red}${Kernel}${Cyan}"
+                ;;
+        "Quit")
+                clear
+                echo -e "${Red}Quiting...${Cyan}"
+                exit
+                ;;
+        *)
+                clear
+                echo -e "${Red}Invalid option${Cyan}"
+                exit
+                ;;
+      esac
+      REPLY=
+echo
+echo
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo -e "You are using: ${Red}${whichOS}${Cyan}"
+echo -e "Kernel: ${Red}${Kernel}${Cyan}"
+echo -e "Session: ${Red}${Session}${Cyan}"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What do you want to do?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo
+echo
+done
+}
 #Detecting OS and make use of the right function with each OS
 if [[ "$whichOS" == "Ubuntu" ]]; then
         echo -e "${Cyan}You have ${Red}${whichOS} installed.${Cyan}" && mainUbuntu
@@ -339,6 +400,8 @@ if [[ "$whichOS" == "Ubuntu" ]]; then
         echo -e "${Cyan}You have ${Red}${whichOS} installed.${Cyan}" && mainRocky
         elif [[ "$whichOS" == "CentOS" ]]; then
         echo -e "${Cyan}You have ${Red}${whichOS} installed.${Cyan}" && mainCentOS
+        elif [[ "$whichOS" == "Debian" ]]; then
+        echo -e "${Cyan}You have ${Red}${whichOS} installed.${Cyan}" && mainDebian
         else
         echo -e "${Red}You have something else installed. Cant execute script.${Cyan}" && exit
 fi
