@@ -332,13 +332,13 @@ done
 
 #Detecting OS and make use of the right function with each OS
 if [[ "$whichOS" == "Ubuntu" ]]; then
-        echo "You have $whichOS installed." && mainUbuntu
+        echo -e "${Cyan}You have ${Red}${whichOS} installed.${Cyan}" && mainUbuntu
         elif [[ "$whichOS" == "Arch" ]]; then
-        echo "You have $whichOS installed." && mainArch
+        echo -e "${Cyan}You have ${Red}${whichOS} installed.${Cyan}" && mainArch
         elif [[ "$whichOS" == "Rocky" ]]; then
-        echo "You have $whichOS installed." && mainRocky
+        echo -e "${Cyan}You have ${Red}${whichOS} installed.${Cyan}" && mainRocky
         elif [[ "$whichOS" == "CentOS" ]]; then
-        echo "You have $whichOS installed." && mainCentOS
+        echo -e "${Cyan}You have ${Red}${whichOS} installed.${Cyan}" && mainCentOS
         else
-        echo "You have something else installed. Cant execute script." && exit
+        echo -e "${Red}You have something else installed. Cant execute script.${Cyan}" && exit
 fi
