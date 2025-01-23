@@ -1,4 +1,5 @@
 #!/bin/bash
+# download link needs to be manually changed, idk if there is an easier way to always get the latest version
 wget https://download.jetbrains.com/python/pycharm-community-2024.3.1.1.tar.gz
 wait
 sudo tar xzf pycharm-*.tar.gz -C /opt/
