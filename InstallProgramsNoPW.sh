@@ -37,6 +37,8 @@ yay -S brave-bin --needed --noconfirm
 printf "%s\n" "$PWonce" | sudo -S pacman -S steam --needed --noconfirm
 #Install Discord
 printf "%s\n" "$PWonce" | sudo -S pacman -S discord --needed --noconfirm
+#Install Vesktop (Better Discord alternative for Linux + Screen&Game capture works) -> Still have to test if this works!
+#sh -c "$(curl -sS https://raw.githubusercontent.com/Vendicated/VencordInstaller/main/install.sh)"
 #Install Spotify
 yay -S spotify --needed --noconfirm
 #Install Google Chrome
