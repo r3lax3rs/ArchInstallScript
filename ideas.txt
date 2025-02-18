@@ -1,1 +1,1 @@
-
+Change script for detecting VM's with for example "systemd-detect-virt"
