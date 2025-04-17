@@ -1,1 +1,5 @@
 Change script for detecting VM's with for example "systemd-detect-virt"
+
+Add dotfiles for exact copy (when reinstalling no need to do anything like putting desired programs onto taskbar etc)
+
+maybe try out i3 / hyprland on SSD and see how that goes?
