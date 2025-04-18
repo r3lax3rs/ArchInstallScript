@@ -6,9 +6,11 @@
 sed -i 's/#Color/Color/' /etc/pacman.conf
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 20/' /etc/pacman.conf
 #sed -i 's/#HookDir     = /etc/pacman.d/hooks/HookDir     = /etc/pacman.d/hooks/' /etc/pacman.conf
+#
+# Installing below is fixed in the newer .iso files from Arch
 #Issues with installing Audio via default archinstall script; fix
-pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa base-devel --needed --noconfirm
-systemctl --user enable --now pipewire.service wireplumber.service pipewire-pulse.service
+#pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa base-devel --needed --noconfirm
+#systemctl --user enable --now pipewire.service wireplumber.service pipewire-pulse.service
 #
 #Installing through the JSON user configuration from the archinstall script
 #First getting file through git
