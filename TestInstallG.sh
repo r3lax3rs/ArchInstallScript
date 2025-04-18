@@ -62,6 +62,7 @@ install_program "Geany" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S geany --
 install_program "curl" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S curl --needed --noconfirm"
 install_program "Steam" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S steam --needed --noconfirm"
 install_program "Discord" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S discord --needed --noconfirm"
+install_program "Unzip" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S unzip --needed --noconfirm"
 
 # Disabled Installations
 # install_program "NordVPN" "yay -S nordvpn-bin --needed --noconfirm"
