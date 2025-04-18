@@ -89,7 +89,7 @@ echo
 Result=""
 COLUMNS=30
 PS3="Please select an option: "
-options=("Brave Browser" "Spotify" "Pycharm" "yay package manager" "Back to Main Menu" "Quit")
+options=("Brave Browser" "Spotify" "Pycharm" "Osu!" "yay package manager" "Back to Main Menu" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
@@ -112,6 +112,15 @@ do
                 echo 'export PATH=/opt/pycharm/bin:$PATH' >> $HOME/.bash_aliases
                 source $HOME/.bash_aliases~
                 echo -e "${Red}Pycharm is installed${Cyan}"
+                ;;
+        "Osu!")
+                clear
+                git clone https://github.com/NelloKudo/osu-winello.git
+                cd osu-winello
+                chmod +x ./osu-winello.sh
+                ./osu-winello.sh
+                cd
+                echo -e "${Red}Osu! is installed${Cyan}"
                 ;;
         "yay Package Manager")
                 clear
