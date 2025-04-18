@@ -46,18 +46,25 @@ install_program() {
     eval "$command" || log_error "Failed to install $name."
 }
 
+# Yay installations
 install_program "Brave" "yay -S brave-bin --needed --noconfirm"
-install_program "Steam" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S steam --needed --noconfirm"
-install_program "Discord" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S discord --needed --noconfirm"
 install_program "Spotify" "yay -S spotify --needed --noconfirm"
 install_program "Chrome" "yay -S google-chrome --needed --noconfirm"
-install_program "NordVPN" "yay -S nordvpn-bin --needed --noconfirm"
-install_program "OpenRGB" "yay -S openrgb"
-install_program "RPi Imager" "yay -S rpi-imager-bin"
+install_program "OpenRGB" "yay -S openrgb --needed --noconfirm"
+install_program "RPi Imager" "yay -S rpi-imager-bin --needed --noconfirm"
+install_program "Vesktop" "yay -S vesktop-bin --needed --noconfirm"
+install_program "ProtonVPN" "yay -S proton-vpn-gtk-app --needed --noconfirm"
+install_program "RealVNC Viewer" "yay -S realvnc-vnc-viewer --needed --noconfirm"
+# Pacman Installations
 install_program "Teamspeak3" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S teamspeak3 --needed --noconfirm"
 install_program "Telegram" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S telegram-desktop --needed --noconfirm"
 install_program "Geany" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S geany --needed --noconfirm"
 install_program "curl" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S curl --needed --noconfirm"
+install_program "Steam" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S steam --needed --noconfirm"
+install_program "Discord" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S discord --needed --noconfirm"
+
+# Disabled Installations
+# install_program "NordVPN" "yay -S nordvpn-bin --needed --noconfirm"
 
 # ─── OpenTabletDriver ─────────────────────────────────────────────
 log_info "Installing OpenTabletDriver dependencies."
