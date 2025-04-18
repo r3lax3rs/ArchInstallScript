@@ -95,14 +95,29 @@ echo
 Result=""
 COLUMNS=30
 PS3="Please select an option: "
-options=("Brave Browser" "Spotify" "Pycharm" "Osu!" "yay package manager" "Back to Main Menu" "Quit")
+options=("yay package manager" "Chrome Browser" "Brave Browser" "Spotify" "Pycharm" "Osu!" "Discord" "Vesktop" "ProtonVPN" "Real VNC Viewer" "RPi Imager" "Teamspeak 3" "Steam" "Geany" "Telegram" "Back to Main Menu" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
+        "yay Package Manager")
+                clear
+                sudo -S pacman -S go --noconfirm --needed
+                git clone https://aur.archlinux.org/yay.git
+                cd yay
+                makepkg -s --noconfirm --needed
+                sudo -S pacman -U *.pkg.tar.zst --noconfirm
+                cd $HOME
+                echo -e "${Red}yay Package Manager is installed${Cyan}"
+                ;;
         "Brave Browser")
                 clear
                 yay -S brave-bin --needed --noconfirm
                 echo -e "${Red}Brave Browser is installed${Cyan}"
+                ;;
+        "Chrome Browser")
+                clear
+                yay -S google-chrome --needed --noconfirm
+                echo -e "${Red}Chrome Browser is installed${Cyan}"
                 ;;
         "Spotify")
                 clear
@@ -137,15 +152,50 @@ do
                 wait
                 echo -e "${Red}Osu! is installed${Cyan}"
                 ;;
-        "yay Package Manager")
+        "Discord")
                 clear
-                sudo -S pacman -S go --noconfirm --needed
-                git clone https://aur.archlinux.org/yay.git
-                cd yay
-                makepkg -s --noconfirm --needed
-                sudo -S pacman -U *.pkg.tar.zst --noconfirm
-                cd $HOME
-                echo -e "${Red}yay Package Manager is installed${Cyan}"
+                sudo pacman -S discord --needed --noconfirm
+                echo -e "${Red}Discord is installed${Cyan}"
+                ;;
+        "Vesktop")
+                clear
+                yay -S vesktop-bin --needed --noconfirm
+                echo -e "${Red}Vesktop is installed${Cyan}"
+                ;;
+        "ProtonVPN")
+                clear
+                yay -S proton-vpn-gtk-app --needed --noconfirm
+                echo -e "${Red}ProtonVPN is installed${Cyan}"
+                ;;
+        "Real VNC Viewer")
+                clear
+                yay -S realvnc-vnc-viewer --needed --noconfirm
+                echo -e "${Red}Real VNC Viewer is installed${Cyan}"
+                ;;
+        "RPi Imager")
+                clear
+                yay -S rpi-imager-bin --needed --noconfirm
+                echo -e "${Red}RPi Imager is installed${Cyan}"
+                ;;
+        "Teamspeak 3")
+                clear
+                sudo -S pacman -S teamspeak3 --needed --noconfirm
+                echo -e "${Red}Teamspeak 3 is installed${Cyan}"
+                ;;
+        "Steam")
+                clear
+                sudo pacman -S steam --needed --noconfirm
+                echo -e "${Red}Steam is installed${Cyan}"
+                ;;
+        "Geany")
+                clear
+                sudo pacman -S geany --needed --noconfirm
+                echo -e "${Red}Geany is installed${Cyan}"
+                ;;
+        "Telegram")
+                clear
+                sudo pacman -S telegram-desktop --needed --noconfirm
+                echo -e "${Red}Telegram is installed${Cyan}"
                 ;;
         "Back to Main Menu")
             if [[ "$whichOS" == "Ubuntu" ]]; then
