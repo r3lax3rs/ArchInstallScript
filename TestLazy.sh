@@ -113,6 +113,7 @@ do
                 clear
                 yay -S brave-bin --needed --noconfirm
                 echo -e "${Red}Brave Browser is installed${Cyan}"
+                sleep 2
                 ;;
         "Chrome Browser")
                 clear
