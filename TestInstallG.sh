@@ -98,6 +98,11 @@ install_program "Vim" "printf '%s\\n' \"$PWonce\" | sudo -S pacman -S vim --need
 # ─── VIM Config ───────────────────────────────────────────────────
 mv -i /home/$USER/ArchInstallScript/.vimrc /home/$USER/ || log_error "Failed to move .vimrc"
 
+# ─── Adding to video usergroup ( fixes small stutters/input lag in some games ────────────────────────
+echo "Adding current user: $USER to video group"
+printf "%s\n" "$PWonce" | sudo usermod -aG video $USER
+wait
+
 # ─── KDE Config Restore ───────────────────────────────────────────
 log_info "Restoring KDE configs."
 DOTFILES_DIR="$HOME/ArchInstallScript/dotfiles/.config"
