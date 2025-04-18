@@ -280,7 +280,7 @@ echo
 Result=""
 COLUMNS=30
 PS3="Please select an option: "
-options=("Update-pacman" "Installing Programs" "Update-yay" "Check IP Address" "Check Kernel" "Advanced Mouse Settings" "Quit")
+options=("Update-pacman" "Installing Programs" "Removing Programs" "Update-yay" "Check IP Address" "Check Kernel" "Advanced Mouse Settings" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
@@ -291,6 +291,10 @@ do
         "Installing Programs")
                 clear
                 archPrograms
+                ;;
+        "Removing Programs")
+                clear
+                archRemovePrograms
                 ;;
         "Update-yay")
                 clear
