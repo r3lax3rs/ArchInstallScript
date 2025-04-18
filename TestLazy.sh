@@ -64,7 +64,7 @@ echo
 echo
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
-echo "Anything else you would like to install?"
+echo "Anything else you would like to remove?"
 echo -e "${Red}-----------------------------------------${Cyan}"
 echo
 echo
