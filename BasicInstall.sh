@@ -28,14 +28,6 @@ export linuxkernal=`uname -r | awk {'print substr($0, length($0)-6, 4)'}` #arch
 export cpu=`cat /proc/cpuinfo |grep vendor_id | awk '!seen[$0]++' | awk {'print $3'}`
 export mygpu=`lspci -v |grep VGA | awk {'print $5'}`
 
-#Make a better looking PS1 by replacing .bashrc: (test if this also works on other OS' beside arch)
-mv /home/${SUDO_USER:-$USER}/ArchInstallScript/.bashrc /home/$USER/
-wait
-
-#Make .bash_aliases with already some added aliases:
-mv /home/${SUDO_USER:-$USER}/ArchInstallScript/.bash_aliases /home/$USER/
-wait
-
 #Disable systemd sleep services
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 wait
