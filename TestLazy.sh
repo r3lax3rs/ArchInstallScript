@@ -9,7 +9,68 @@ export MouseAccel=$(xset q | grep -A 1 Pointer)
 export Session=$(loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type | cut -d "=" -f2- | awk '!/unspecified/')
 export Acceloff=$(xset m 0 0)
 
-# Submenu - Installing Programs
+# Submenu - Remove Programs Arch Linux
+archRemovePrograms() {
+clear
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What would you like to remove?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo
+echo
+
+Result=""
+COLUMNS=30
+PS3="Please select an option: "
+options=("Brave Browser" "Spotify" "Back to Main Menu" "Quit")
+select opt in "${options[@]}"
+do
+      case $opt in
+        "Brave Browser")
+                clear
+                yay -Rns brave-bin
+                echo -e "${Red}Brave Browser is removed${Cyan}"
+                ;;
+        "Spotify")
+                clear
+                yay -Rns spotify
+                echo -e "${Red}Spotify is removed${Cyan}"
+                ;;
+        "Back to Main Menu")
+            if [[ "$whichOS" == "Ubuntu" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Ubuntu!${Cyan}" && mainUbuntu
+            elif [[ "$whichOS" == "Arch" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Arch!${Cyan}" && mainArch
+            elif [[ "$whichOS" == "Rocky" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Rocky!${Cyan}" && mainRocky
+            elif [[ "$whichOS" == "CentOS" ]]; then
+                    echo -e "${Cyan}Back to ${Red}CentOS${Cyan}" && mainCentOS
+            else
+                    echo -e "${Red}An error has occured. Exiting..." && exit
+            fi
+                ;;
+        "Quit")
+                clear
+                echo -e "${Red}Quiting...${Cyan}"
+                exit
+                ;;
+        *)
+                clear
+                echo "Invalid option"
+                exit
+                ;;
+      esac
+      REPLY=
+echo
+echo
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What would you like to do?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo
+echo
+done
+}
+
+# Submenu - Installing Programs Arch Linux
 archPrograms() {
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
