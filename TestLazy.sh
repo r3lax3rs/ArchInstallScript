@@ -37,7 +37,10 @@ do
                 ;;
         "Pycharm")
                 clear
+                pypath = 'export PATH=/opt/pycharm/bin:$PATH'
+                clearpypath = ''
                 rm -rf /opt/pycharm
+                sed -i 's/{pypath}/{clearpypath}/' $HOME/.bash_aliases
                 echo -e "${Red}Pycharm is removed${Cyan}"
                 ;;
         "Back to Main Menu")
@@ -108,8 +111,8 @@ do
                 wait
                 sudo tar xzf pycharm-*.tar.gz -C /opt/
                 sudo mv /opt/pycharm-* /opt/pycharm
-                echo 'export PATH=/opt/pycharm/bin:$PATH' >> ~/.bash_aliases
-                source ~/.bash_aliases
+                echo 'export PATH=/opt/pycharm/bin:$PATH' >> $HOME/.bash_aliases
+                source $HOME/.bash_aliases~
                 echo -e "${Red}Pycharm is installed${Cyan}"
                 ;;
         "yay Package Manager")
