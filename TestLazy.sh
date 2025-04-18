@@ -62,8 +62,9 @@ do
       REPLY=
 echo
 echo
+clear
 echo -e "${Red}-----------------------------------------${Cyan}"
-echo "What would you like to do?"
+echo "Anything else you would like to install?"
 echo -e "${Red}-----------------------------------------${Cyan}"
 echo
 echo
