@@ -8,6 +8,66 @@ export whichOS=$(cat /etc/*release | grep PRETTY_NAME | cut -d '=' -f2- | tr -d 
 export MouseAccel=$(xset q | grep -A 1 Pointer)
 export Session=$(loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type | cut -d "=" -f2- | awk '!/unspecified/')
 export Acceloff=$(xset m 0 0)
+
+# Submenu - Installing Programs
+archPrograms() {
+clear
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What would you like to install?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo
+echo
+
+Result=""
+COLUMNS=30
+PS3="Please select an option: "
+options=("Brave Browser" "yay package manager" "Back to Main Menu" "Quit")
+select opt in "${options[@]}"
+do
+      case $opt in
+        "Brave Browser")
+                clear
+                yay -S brave-bin --needed --noconfirm
+                echo -e "${Red}Installing Brave Browser${Cyan}"
+                ;;
+        "yay Package Manager")
+                clear
+                sudo -S pacman -S go --noconfirm --needed
+                git clone https://aur.archlinux.org/yay.git
+                cd yay
+                makepkg -s --noconfirm --needed
+                sudo -S pacman -U *.pkg.tar.zst --noconfirm
+                cd $HOME
+                echo -e "${Red}yay Package Manager is installed${Cyan}"
+                ;;
+        "Back to Main Menu")
+            if [[ "$whichOS" == "Ubuntu" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Ubuntu!${Cyan}" && mainUbuntu
+            elif [[ "$whichOS" == "Arch" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Arch!${Cyan}" && mainArch
+            elif [[ "$whichOS" == "Rocky" ]]; then
+                    echo -e "${Cyan}Back to ${Red}Rocky!${Cyan}" && mainRocky
+            elif [[ "$whichOS" == "CentOS" ]]; then
+                    echo -e "${Cyan}Back to ${Red}CentOS${Cyan}" && mainCentOS
+            else
+                    echo -e "${Red}An error has occured. Exiting..." && exit
+            fi
+                ;;
+        "Quit")
+                clear
+                echo -e "${Red}Quiting...${Cyan}"
+                exit
+                ;;
+        *)
+                clear
+                echo "Invalid option"
+                exit
+                ;;
+      esac
+      REPLY=
+echo
+echo
+
 # Submenu - Mouse settings Arch
 mouseAdvanced() {
 clear
@@ -152,13 +212,17 @@ echo
 Result=""
 COLUMNS=30
 PS3="Please select an option: "
-options=("Update-pacman" "Update-yay" "Check IP Address" "Check Kernel" "Advanced Mouse Settings" "Quit")
+options=("Update-pacman" "Installing Programs" "Update-yay" "Check IP Address" "Check Kernel" "Advanced Mouse Settings" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
         "Update-pacman")
                 clear
                 sudo pacman -Syu
+                ;;
+        "Installing Programs")
+                clear
+                archPrograms
                 ;;
         "Update-yay")
                 clear
