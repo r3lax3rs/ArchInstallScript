@@ -67,6 +67,13 @@ do
       REPLY=
 echo
 echo
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo "What would you like to do?"
+echo -e "${Red}-----------------------------------------${Cyan}"
+echo
+echo
+done
+}
 
 # Submenu - Mouse settings Arch
 mouseAdvanced() {
