@@ -82,7 +82,7 @@ echo
 Result=""
 COLUMNS=30
 PS3="Please select an option: "
-options=("Brave Browser" "yay package manager" "Back to Main Menu" "Quit")
+options=("Brave Browser" "Spotify" "yay package manager" "Back to Main Menu" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
@@ -90,6 +90,11 @@ do
                 clear
                 yay -S brave-bin --needed --noconfirm
                 echo -e "${Red}Installing Brave Browser${Cyan}"
+                ;;
+        "Spotify")
+                clear
+                yay -S spotify --needed --noconfirm
+                echo -e "${Red}Installing Spotify${Cyan}"
                 ;;
         "yay Package Manager")
                 clear
