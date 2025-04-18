@@ -45,6 +45,10 @@ yay -S spotify --needed --noconfirm
 yay -S google-chrome --needed --noconfirm
 #Install NordVPN
 yay -S nordvpn-bin --needed --noconfirm
+#Install openrgb
+yay -S openrgb
+#Install Raspberry Pi Imager
+yay -S rpi-imager-bin
 #Install Teamspeak3
 printf "%s\n" "$PWonce" | sudo -S pacman -S teamspeak3 --needed --noconfirm
 #Install Telegram Desktop App
