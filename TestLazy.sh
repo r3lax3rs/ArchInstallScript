@@ -21,7 +21,7 @@ echo
 Result=""
 COLUMNS=30
 PS3="Please select an option: "
-options=("Brave Browser" "Spotify" "Pycharm" "Back to Main Menu" "Quit")
+options=("Brave Browser" "Spotify" "Pycharm" "Osu!" "Back to Main Menu" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
@@ -40,6 +40,12 @@ do
                 sudo rm -rf /opt/pycharm
                 sed -i 's@export PATH=/opt/pycharm/bin:$PATH@@' $HOME/.bash_aliases
                 echo -e "${Red}Pycharm is removed${Cyan}"
+                ;;
+        "Osu!")
+                clear
+                cd $HOME
+                osu-wine --remove
+                echo -e "${Red}Osu! is removed${Cyan}"
                 ;;
         "Back to Main Menu")
             if [[ "$whichOS" == "Ubuntu" ]]; then
