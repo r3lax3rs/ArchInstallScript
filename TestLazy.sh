@@ -37,10 +37,8 @@ do
                 ;;
         "Pycharm")
                 clear
-                pypath = 'export PATH=/opt/pycharm/bin:$PATH'
-                clearpypath = ''
-                rm -rf /opt/pycharm
-                sed -i 's/{pypath}/{clearpypath}/' $HOME/.bash_aliases
+                sudo rm -rf /opt/pycharm
+                sed -i 's@export PATH=/opt/pycharm/bin:$PATH@@' $HOME/.bash_aliases
                 echo -e "${Red}Pycharm is removed${Cyan}"
                 ;;
         "Back to Main Menu")
