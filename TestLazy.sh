@@ -121,7 +121,7 @@ do
                 wait
                 chmod +x osu-winello.sh
                 wait
-                osu-winello.sh | bash
+                ./osu-winello.sh
                 wait
                 cd ..
                 wait
