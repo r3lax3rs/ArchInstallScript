@@ -116,12 +116,19 @@ do
         "Osu!")
                 clear
                 git clone https://github.com/NelloKudo/osu-winello.git
+                wait
                 cd osu-winello
+                wait
                 chmod +x ./osu-winello.sh
+                wait
                 osu-winello.sh | bash
+                wait
                 cd ..
+                wait
                 rm -rf osu-winello
+                wait
                 cd
+                wait
                 echo -e "${Red}Osu! is installed${Cyan}"
                 ;;
         "yay Package Manager")
