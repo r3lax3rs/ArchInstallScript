@@ -21,7 +21,7 @@ echo
 Result=""
 COLUMNS=30
 PS3="Please select an option: "
-options=("Brave Browser" "Spotify" "Back to Main Menu" "Quit")
+options=("Brave Browser" "Spotify" "Pycharm" "Back to Main Menu" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
@@ -34,6 +34,11 @@ do
                 clear
                 yay -Rns spotify
                 echo -e "${Red}Spotify is removed${Cyan}"
+                ;;
+        "Pycharm")
+                clear
+                rm -rf /opt/pycharm
+                echo -e "${Red}Pycharm is removed${Cyan}"
                 ;;
         "Back to Main Menu")
             if [[ "$whichOS" == "Ubuntu" ]]; then
@@ -83,19 +88,29 @@ echo
 Result=""
 COLUMNS=30
 PS3="Please select an option: "
-options=("Brave Browser" "Spotify" "yay package manager" "Back to Main Menu" "Quit")
+options=("Brave Browser" "Spotify" "Pycharm" "yay package manager" "Back to Main Menu" "Quit")
 select opt in "${options[@]}"
 do
       case $opt in
         "Brave Browser")
                 clear
                 yay -S brave-bin --needed --noconfirm
-                echo -e "${Red}Installing Brave Browser${Cyan}"
+                echo -e "${Red}Brave Browser is installed${Cyan}"
                 ;;
         "Spotify")
                 clear
                 yay -S spotify --needed --noconfirm
-                echo -e "${Red}Installing Spotify${Cyan}"
+                echo -e "${Red}Spotify is installed${Cyan}"
+                ;;
+        "Pycharm")
+                clear
+                wget https://download.jetbrains.com/python/pycharm-community-2024.3.1.1.tar.gz
+                wait
+                sudo tar xzf pycharm-*.tar.gz -C /opt/
+                sudo mv /opt/pycharm-* /opt/pycharm
+                echo 'export PATH=/opt/pycharm/bin:$PATH' >> ~/.bash_aliases
+                source ~/.bash_aliases
+                echo -e "${Red}Pycharm is installed${Cyan}"
                 ;;
         "yay Package Manager")
                 clear
