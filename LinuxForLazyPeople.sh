@@ -8,7 +8,7 @@ export whichOS=$(cat /etc/*release | grep PRETTY_NAME | cut -d '=' -f2- | tr -d 
 export MouseAccel=$(xset q | grep -A 1 Pointer)
 export Session=$(loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type | cut -d "=" -f2- | awk '!/unspecified/')
 export Acceloff=$(xset m 0 0)
-#Mouse settings Arch:
+# Submenu - Mouse settings Arch
 mouseAdvanced() {
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
@@ -66,7 +66,8 @@ echo
 echo
 done
 }
-#Clear Cache Rocky
+
+# Submenu - Clear Cache Rocky
 clearRocky() {
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
@@ -129,7 +130,8 @@ echo
 echo
 done
 }
-#Arch Linux part
+
+#Arch Linux Main Menu
 mainArch() {
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
@@ -198,7 +200,8 @@ echo
 echo
 done
 }
-#Rocky Linux Part
+
+# Rocky Linux Main Menu
 mainRocky() {
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
@@ -266,7 +269,8 @@ echo
 echo
 done
 }
-#Ubuntu Linux Part
+
+# Ubuntu Linux Main Menu
 mainUbuntu() {
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
@@ -328,7 +332,8 @@ echo
 echo
 done
 }
-#Debian Linux Part
+
+#Debian Linux Main Menu
 mainDebian() {
 clear
 echo -e "${Red}-----------------------------------------${Cyan}"
@@ -390,6 +395,7 @@ echo
 echo
 done
 }
+
 #Detecting OS and make use of the right function with each OS
 if [[ "$whichOS" == "Ubuntu" ]]; then
         echo -e "${Cyan}You have ${Red}${whichOS} installed.${Cyan}" && mainUbuntu
