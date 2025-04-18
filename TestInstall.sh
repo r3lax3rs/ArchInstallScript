@@ -114,3 +114,32 @@ echo -e "${Cyan}Everything has been installed.${Reset}"
 sleep 2
 echo -e "${Cyan}Exiting script!${Reset}"
 sleep 2
+
+# Symlinking all applications + restore taskbar.
+DOTFILES_DIR="$HOME/ArchInstallScript/dotfiles/.config"
+BACKUP_DIR="$HOME/kde_backup_$(date +%d%m%Y%H%M%S)"
+KDE_CONFIG_DIR="$HOME/.config"
+
+echo "Backing up existing KDE config files to $BACKUP_DIR..."
+mkdir -p "$BACKUP_DIR"
+
+declare -a KDE_FILES=(
+    "kdeglobals"
+    "kwinrc"
+    "plasma-org.kde.plasma.desktop-appletsrc"
+)
+
+for file in "${KDE_FILES[@]}"; do
+    src="$DOTFILES_DIR/$file"
+    dest="$KDE_CONFIG_DIR/$file"
+
+    if [ -f "$dest" ]; then
+        echo "Backing up $dest"
+        mv "$dest" "$BACKUP_DIR/"
+    fi
+
+    echo "Linking $src → $dest"
+    ln -sf "$src" "$dest"
+done
+
+echo "Please log in & log out OR reboot!"
