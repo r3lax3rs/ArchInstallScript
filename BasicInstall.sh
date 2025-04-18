@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 # Make sure this script is run as root
 if [[ $EUID -ne 0 ]]; then
     echo
@@ -8,37 +8,44 @@ if [[ $EUID -ne 0 ]]; then
     exit
 fi
 wait
+
 #Remove file at the end of script; uncomment to make it work
 #rm -- "$0"
+
 #list of variables
 #Color variables for error ouput
 export Red='\e[38;5;196m'
 export Reset='\033[0m'
 export Cyan='\e[38;5;87m'
-#
+
 intel="GenuineIntel"
 AMDCPU="AuthenticAMD"
+
 #Variables for comparisons
 export architecture=`uname -m`
 export kernel=`uname -r | awk {'print substr($0, length($0)-2, 3)'}` #zen or lts
 export linuxkernal=`uname -r | awk {'print substr($0, length($0)-6, 4)'}` #arch
 export cpu=`cat /proc/cpuinfo |grep vendor_id | awk '!seen[$0]++' | awk {'print $3'}`
 export mygpu=`lspci -v |grep VGA | awk {'print $5'}`
+
 #Make a better looking PS1 by replacing .bashrc: (test if this also works on other OS' beside arch)
-mv /home/$USER/ArchInstallScript/.bashrc /home/$USER/
+mv /home/${SUDO_USER:-$USER}/ArchInstallScript/.bashrc /home/$USER/
 wait
+
 #Make .bash_aliases with already some added aliases:
-mv /home/$USER/ArchInstallScript/.bash_aliases /home/$USER/
+mv /home/${SUDO_USER:-$USER}/ArchInstallScript/.bash_aliases /home/$USER/
 wait
+
 #Disable systemd sleep services
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 wait
+
+# Probably not necessary since im doing a dotfiles copy in the install
 #Symlink root KDE to User KDE (else we don't see the theme switching, only after logging out/rebooting)
-#ln -s /home/$USER/.kde /root/.kde ->>> mabye also not the way to go
 #Change to dark mode
-plasma-apply-colorscheme BreezeDark 2> /dev/null && sudo --user=$USER plasma-apply-colorscheme BreezeDark 2> /dev/null
-wait
-#lookandfeeltool -a org.kde.breezedark.desktop --> idk if this is the right way
+#plasma-apply-colorscheme BreezeDark 2> /dev/null && sudo --user=$USER plasma-apply-colorscheme BreezeDark 2> /dev/null
+#wait
+
 #First lets do a first time update of our system
 pacman -Syu --noconfirm 2> /dev/null
 wait
@@ -89,17 +96,20 @@ elif [[ "$linuxkernel" == "arch" ]] && "$mygpu" == "NVIDIA" ]]; then
     pacman -S nvidia --needed --noconfirm
 fi
 wait
-#Cehck if /etc/pacman.d/hooks/ directory exists; if not adding hooks map
-if [ -d "/etc/pacman.d/hooks/" ]; then
-    echo -e "${Cyan}Directory already exists, ${Reset}will continue to copy nvidia.hook"
-elif [ ! -d "/etc/pacman.d/hooks/" ]; then
-    mkdir "/etc/pacman.d/hooks"
-    echo "Directory hooks has been added; will copy nvidia.hook next"
-fi
-wait
+
+#Check if /etc/pacman.d/hooks/ directory exists; if not adding hooks map -- NOT NECESSARY FOR LINUX-ZEN
+#if [ -d "/etc/pacman.d/hooks/" ]; then
+#    echo -e "${Cyan}Directory already exists, ${Reset}will continue to copy nvidia.hook"
+#elif [ ! -d "/etc/pacman.d/hooks/" ]; then
+#    mkdir "/etc/pacman.d/hooks"
+#    echo "Directory hooks has been added; will copy nvidia.hook next"
+#fi
+#wait
+
 #Adding Nvidia hook for updates
-cp /home/$USER/ArchInstallScript/nvidia.hook /etc/pacman.d/hooks/
-wait
+#cp /home/${SUDO_USER:-$USER}/ArchInstallScript/nvidia.hook /etc/pacman.d/hooks/
+#wait
+
 #Check what settings needs to be overwritten based on kernel + gpu hook
 old_path="#HookDir     = /etc/pacman.d/hooks/"
 new_path="HookDir     = /etc/pacman.d/hooks/"
@@ -122,16 +132,19 @@ else
     sleep 3
 fi
 wait
+
 #Editing GRUB config for Intel+Nvidia
 if [[ "$cpu" == "$intel" ]] && [[ "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=3 udev.log=priority=3 nvidia_drm.modeset=1 nvidia-drm.fbdev=1 ibt=off"/' /etc/default/grub
     echo -e "${Cyan}lines have been added to /etc/default/grub${Reset}"
 fi
 wait
+
 #Adding user to video group
 echo "Adding current user: $USER to video group"
 usermod -aG video $USER
 wait
+
 #Write settings to GRUB & mkinitcpio at the end of everything
 grub-mkconfig -o /boot/grub/grub.cfg && mkinitcpio -P 2> /dev/null
 echo -e "${Cyan}All settings have been written to the configs.${Reset}"
