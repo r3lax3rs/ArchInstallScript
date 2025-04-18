@@ -114,6 +114,14 @@ for file in "${KDE_FILES[@]}"; do
 done
 
 log_info "All done! Please log out and back in or reboot to apply KDE config changes."
+
+# Move .bashrc and .bash_aliases
+log_info "Copying .bashrc and .bash_aliases to home directory..."
+cp -v "$HOME/ArchInstallScript/.bashrc" "$HOME/.bashrc" || log_error "Failed to copy .bashrc"
+cp -v "$HOME/ArchInstallScript/.bash_aliases" "$HOME/.bash_aliases" || log_error "Failed to copy .bash_aliases"
+source $HOME/.bashrc
+source $HOME/.bash_aliases
+
 echo -e "${Cyan}Everything has been installed.${Reset}"
 sleep 2
 echo -e "${Cyan}Exiting script!${Reset}"
