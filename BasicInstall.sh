@@ -32,12 +32,6 @@ export mygpu=`lspci -v |grep VGA | awk {'print $5'}`
 systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 wait
 
-# Probably not necessary since im doing a dotfiles copy in the install
-#Symlink root KDE to User KDE (else we don't see the theme switching, only after logging out/rebooting)
-#Change to dark mode
-#plasma-apply-colorscheme BreezeDark 2> /dev/null && sudo --user=$USER plasma-apply-colorscheme BreezeDark 2> /dev/null
-#wait
-
 #First lets do a first time update of our system
 pacman -Syu --noconfirm 2> /dev/null
 wait
@@ -130,11 +124,6 @@ if [[ "$cpu" == "$intel" ]] && [[ "$mygpu" == "NVIDIA" ]]; then
     sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=3 udev.log=priority=3 nvidia_drm.modeset=1 nvidia-drm.fbdev=1 ibt=off"/' /etc/default/grub
     echo -e "${Cyan}lines have been added to /etc/default/grub${Reset}"
 fi
-wait
-
-#Adding user to video group
-echo "Adding current user: $USER to video group"
-usermod -aG video $USER
 wait
 
 #Write settings to GRUB & mkinitcpio at the end of everything
