@@ -118,7 +118,9 @@ do
                 git clone https://github.com/NelloKudo/osu-winello.git
                 cd osu-winello
                 chmod +x ./osu-winello.sh
-                ./osu-winello.sh
+                osu-winello.sh | bash
+                cd ..
+                rm -rf osu-winello
                 cd
                 echo -e "${Red}Osu! is installed${Cyan}"
                 ;;
