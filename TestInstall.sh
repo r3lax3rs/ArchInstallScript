@@ -3,6 +3,21 @@
 export Red='\e[38;5;196m'
 export Reset='\033[0m'
 export Cyan='\e[38;5;87m'
+
+# Error Logging
+LOG_FILE="$HOME/arch_install_errors_$(date +%d%m%Y_%H%M%S).log"
+touch "$LOG_FILE"
+
+log_error() {
+    echo "[ERROR] $(date '+%d-%m-%Y %H:%M:%S') - $1" | tee -a "$LOG_FILE" >&2
+}
+
+# Success Logging
+log_info() {
+    echo "[INFO] $(date '+%d-%m-%Y %H:%M:%S') - $1" | tee -a "$LOG_FILE"
+}
+
+
 # Make sure this script is run as root
 if [[ $EUID -eq 0 ]]; then
     echo
