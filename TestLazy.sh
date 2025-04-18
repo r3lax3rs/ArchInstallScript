@@ -115,11 +115,11 @@ do
                 ;;
         "Osu!")
                 clear
-                git clone https://github.com/NelloKudo/osu-winello.git
+                git clone https://github.com/NelloKudo/osu-winello.git $HOME/osu-winello
                 wait
-                cd osu-winello
+                cd $HOME/osu-winello
                 wait
-                chmod +x ./osu-winello.sh
+                chmod +x osu-winello.sh
                 wait
                 osu-winello.sh | bash
                 wait
@@ -127,7 +127,7 @@ do
                 wait
                 rm -rf osu-winello
                 wait
-                cd
+                cd $HOME
                 wait
                 echo -e "${Red}Osu! is installed${Cyan}"
                 ;;
