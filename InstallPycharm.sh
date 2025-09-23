@@ -9,3 +9,4 @@ wait
 echo 'export PATH=/opt/pycharm/bin:$PATH' >> ~/.bashrc
 wait
 rm -rf pycharm-*
+# export PATH="$HOME/.cargo/bin:$PATH"
